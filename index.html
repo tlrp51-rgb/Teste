@@ -1,567 +1,552 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-  </style>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <meta name="theme-color" content="#be123c">
+     <title>Riviera Francesa - Nossa Experiência</title>
+     <!-- Frameworks & Icons -->
+     <script src="https://cdn.tailwindcss.com"></script>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+     <!-- Fonts -->
+     <style>
+         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+         /* --- DESIGN SYSTEM --- */
+         body { font-family: 'Lato', sans-serif; background-color: #f8fafc; color: #1e293b; -webkit-font-smoothing: antialiased; padding-bottom: 100px; }
+         h1, h2, h3, h4, .serif-font { font-family: 'Playfair Display', serif; }
+         /* Mobile Optimization for Tabs */
+         .nav-scroll { -ms-overflow-style: none; scrollbar-width: none; white-space: nowrap; }
+         .nav-scroll::-webkit-scrollbar { display: none; }
+         .tab-button {
+             display: inline-flex; align-items: center; padding: 0.8rem 1.2rem;
+             font-weight: 600; color: #64748b; border-bottom: 3px solid transparent;
+             transition: all 0.3s ease; font-size: 0.9rem;
+         }
+         .tab-button.active { color: #be123c; border-bottom-color: #be123c; background-color: #fff1f2; }
+         .tab-button i { margin-right: 8px; font-size: 1rem; }
+         /* Animations */
+         .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
+         .tab-content.active { display: block; }
+         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+         /* Interactive Cards */
+         .card-zoom { overflow: hidden; }
+         .card-zoom img { transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); width: 100%; height: 100%; object-fit: cover; }
+         .card-zoom:hover img { transform: scale(1.08); }
+         /* Vote Buttons */
+         .vote-btn { transition: all 0.2s; letter-spacing: 0.025em; text-transform: uppercase; font-size: 0.7rem; }
+         .vote-btn.selected { background-color: #10b981; border-color: #10b981; color: white; cursor: default; pointer-events: none; }
+         .vote-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+         /* Chat Widget */
+         .chat-window {
+             position: fixed; bottom: 90px; right: 20px; width: 90vw; max-width: 360px; height: 550px; max-height: 70vh;
+             background: white; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+             display: flex; flex-direction: column; z-index: 5000; border: 1px solid #e2e8f0;
+             transform: scale(0) translateY(20px); opacity: 0; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none;
+         }
+         .chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+         .chat-btn {
+             position: fixed; bottom: 20px; right: 20px; width: 64px; height: 64px; border-radius: 50%;
+             background: linear-gradient(135deg, #be123c, #f43f5e); color: white;
+             display: flex; align-items: center; justify-content: center; font-size: 26px;
+             box-shadow: 0 10px 25px -5px rgba(190, 18, 60, 0.5); cursor: pointer; z-index: 5000;
+             transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+         }
+         .chat-btn:hover { transform: scale(1.1); }
+         .chat-btn:active { transform: scale(0.95); }
+         /* AI Loading Animation */
+         .typing-indicator span {
+             display: inline-block; width: 6px; height: 6px; background-color: #be123c; border-radius: 50%;
+             animation: typing 1.4s infinite ease-in-out both; margin: 0 2px;
+         }
+         .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+         .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+         @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+     </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="pt-br"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;meta name="theme-color" content="#be123c"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;title&gt;Riviera Francesa - Nossa Experiência&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;!-- Frameworks &amp; Icons --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;!-- Fonts --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>/* --- DESIGN SYSTEM --- */</p>
-<p class="p1"><span class="Apple-converted-space">         </span>body { font-family: 'Lato', sans-serif; background-color: #f8fafc; color: #1e293b; -webkit-font-smoothing: antialiased; padding-bottom: 100px; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>h1, h2, h3, h4, .serif-font { font-family: 'Playfair Display', serif; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>/* Mobile Optimization for Tabs */</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.nav-scroll { -ms-overflow-style: none; scrollbar-width: none; white-space: nowrap; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.nav-scroll::-webkit-scrollbar { display: none; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.tab-button {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>display: inline-flex; align-items: center; padding: 0.8rem 1.2rem;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>font-weight: 600; color: #64748b; border-bottom: 3px solid transparent;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>transition: all 0.3s ease; font-size: 0.9rem;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>}</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.tab-button.active { color: #be123c; border-bottom-color: #be123c; background-color: #fff1f2; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.tab-button i { margin-right: 8px; font-size: 1rem; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>/* Animations */</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.tab-content { display: none; animation: fadeIn 0.4s ease-out; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.tab-content.active { display: block; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>/* Interactive Cards */</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.card-zoom { overflow: hidden; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.card-zoom img { transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); width: 100%; height: 100%; object-fit: cover; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.card-zoom:hover img { transform: scale(1.08); }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>/* Vote Buttons */</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.vote-btn { transition: all 0.2s; letter-spacing: 0.025em; text-transform: uppercase; font-size: 0.7rem; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.vote-btn.selected { background-color: #10b981; border-color: #10b981; color: white; cursor: default; pointer-events: none; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.vote-btn:disabled { opacity: 0.5; cursor: not-allowed; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>/* Chat Widget */</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.chat-window {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>position: fixed; bottom: 90px; right: 20px; width: 90vw; max-width: 360px; height: 550px; max-height: 70vh;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>background: white; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);</p>
-<p class="p1"><span class="Apple-converted-space">             </span>display: flex; flex-direction: column; z-index: 5000; border: 1px solid #e2e8f0;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>transform: scale(0) translateY(20px); opacity: 0; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>}</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.chat-btn {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>position: fixed; bottom: 20px; right: 20px; width: 64px; height: 64px; border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>background: linear-gradient(135deg, #be123c, #f43f5e); color: white;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>display: flex; align-items: center; justify-content: center; font-size: 26px;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>box-shadow: 0 10px 25px -5px rgba(190, 18, 60, 0.5); cursor: pointer; z-index: 5000;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);</p>
-<p class="p1"><span class="Apple-converted-space">         </span>}</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.chat-btn:hover { transform: scale(1.1); }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.chat-btn:active { transform: scale(0.95); }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>/* AI Loading Animation */</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.typing-indicator span {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>display: inline-block; width: 6px; height: 6px; background-color: #be123c; border-radius: 50%;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>animation: typing 1.4s infinite ease-in-out both; margin: 0 2px;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>}</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>@keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;!-- App Header --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm/50"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;div class="container mx-auto px-4 py-5 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="inline-block bg-rose-50 border border-rose-100 px-3 py-1 rounded-full mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;p class="text-[10px] font-bold text-rose-600 uppercase tracking-widest"&gt;29 Maio – 13 Junho 2026&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;h1 class="text-3xl md:text-4xl font-bold text-slate-900 serif-font tracking-tight"&gt;Riviera Francesa&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;p class="text-sm text-slate-500 font-light italic mt-1"&gt;Nossa Experiência Exclusiva&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;!-- Mobile Tabs --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;div class="w-full overflow-x-auto nav-scroll bg-white/95 backdrop-blur border-t border-slate-50"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="flex px-2 min-w-max md:justify-center gap-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;button class="tab-button active" data-tab="overview"&gt;&lt;i class="fa-solid fa-compass"&gt;&lt;/i&gt;Visão Geral&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;button class="tab-button" data-tab="itinerary"&gt;&lt;i class="fa-regular fa-calendar-days"&gt;&lt;/i&gt;Roteiro&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;button class="tab-button" data-tab="gastronomy"&gt;&lt;i class="fa-solid fa-utensils"&gt;&lt;/i&gt;Sabores &amp;amp; IA&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;button class="tab-button" data-tab="hotels"&gt;&lt;i class="fa-solid fa-bed"&gt;&lt;/i&gt;Hotéis&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;button class="tab-button" data-tab="logistics"&gt;&lt;i class="fa-solid fa-suitcase-rolling"&gt;&lt;/i&gt;Logística&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;button class="tab-button" data-tab="highlights"&gt;&lt;i class="fa-solid fa-camera-retro"&gt;&lt;/i&gt;Galeria&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;/header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;!-- Main Content --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;main class="container mx-auto px-4 py-8 max-w-5xl"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;!-- 1. OVERVIEW TAB --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;section id="overview" class="tab-content active"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;!-- Stats Grid --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="text-3xl font-bold text-rose-700 serif-font"&gt;16&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1"&gt;Dias&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="text-3xl font-bold text-rose-700 serif-font"&gt;5&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1"&gt;Bases&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="text-3xl font-bold text-rose-700 serif-font"&gt;3&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1"&gt;Regiões&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="text-3xl font-bold text-rose-700 serif-font"&gt;∞&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1"&gt;Memórias&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;!-- Alert Box --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-xl mb-10 flex items-start gap-4 shadow-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="bg-amber-100 p-2 rounded-full text-amber-600"&gt;&lt;i class="fa-solid fa-bell"&gt;&lt;/i&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;h3 class="font-bold text-amber-900 text-sm uppercase tracking-wide mb-1"&gt;Votação Aberta&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;p class="text-xs text-amber-700 leading-relaxed"&gt;Existem múltiplas opções de hospedagem em Avignon e Aix-en-Provence. Vote na aba &lt;strong&gt;Hotéis&lt;/strong&gt; até &lt;strong&gt;01/12/2025&lt;/strong&gt;.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;!-- Timeline &amp; Chart --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="grid grid-cols-1 md:grid-cols-3 gap-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="md:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-100"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;h3 class="text-lg font-bold text-slate-800 mb-6 serif-font flex items-center gap-2"&gt;&lt;i class="fa-solid fa-route text-rose-500"&gt;&lt;/i&gt; Jornada Resumida&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="space-y-8 border-l-2 border-slate-100 pl-6 ml-2 relative"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="relative"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="absolute -left-[33px] top-1 w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;h4 class="font-bold text-slate-900 text-sm"&gt;Paris&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;p class="text-xs text-slate-500 mt-1"&gt;29/05 - 30/05 • Chegada, Montmartre &amp;amp; Gastronomia&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="relative"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="absolute -left-[33px] top-1 w-5 h-5 bg-purple-600 rounded-full border-4 border-white shadow-sm"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;h4 class="font-bold text-slate-900 text-sm"&gt;Provence&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;p class="text-xs text-slate-500 mt-1"&gt;30/05 - 06/06 • Avignon, Aix, Lavanda &amp;amp; Vinhos&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="relative"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="absolute -left-[33px] top-1 w-5 h-5 bg-teal-500 rounded-full border-4 border-white shadow-sm"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;h4 class="font-bold text-slate-900 text-sm"&gt;Riviera &amp;amp; Nice&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;p class="text-xs text-slate-500 mt-1"&gt;06/06 - 13/06 • Costa Azul, Mônaco &amp;amp; Retorno&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;h3 class="text-lg font-bold text-slate-800 mb-4 serif-font text-center"&gt;Foco da Viagem&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="relative w-full h-48"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;canvas id="themeChart"&gt;&lt;/canvas&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;!-- 2. ITINERARY TAB --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;section id="itinerary" class="tab-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="text-center mb-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;p class="text-xs text-slate-400 uppercase tracking-widest font-bold"&gt;Detalhes Dia a Dia&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div id="accordion-container" class="space-y-4 max-w-3xl mx-auto"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;!-- 3. GASTRONOMY TAB --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;section id="gastronomy" class="tab-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;!-- AI Tool: Menu Translator --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="bg-white rounded-2xl shadow-lg shadow-rose-100/50 border border-rose-100 p-6 mb-10 relative overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="absolute -right-6 -top-6 w-24 h-24 bg-rose-50 rounded-full opacity-50"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;h3 class="text-base font-bold text-slate-800 mb-2 flex items-center gap-2 relative z-10"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;i class="fa-solid fa-wand-magic-sparkles text-rose-500"&gt;&lt;/i&gt; Tradutor de Menu IA</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;p class="text-xs text-slate-500 mb-4 relative z-10"&gt;Encontrou um prato desconhecido? Digite o nome e a IA explica.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="flex gap-2 relative z-10"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;input type="text" id="menuInput" placeholder="Ex: Coq au Vin, Escargot..." class="flex-1 px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 transition-shadow"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;button id="decodeMenuBtn" class="bg-rose-600 text-white px-5 py-3 rounded-xl font-bold text-sm hover:bg-rose-700 transition-colors shadow-md shadow-rose-200"&gt;Ver&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div id="menuResult" class="mt-4 hidden text-sm bg-slate-50 p-4 rounded-xl text-slate-700 border border-slate-100 shadow-inner leading-relaxed"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div id="gastronomy-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;!-- 4. HOTELS TAB --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;section id="hotels" class="tab-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="flex justify-between items-end mb-8 px-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;h2 class="text-2xl font-bold text-slate-900 serif-font"&gt;Hotelaria&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;p class="text-xs text-slate-500 mt-1"&gt;Cotação baseada na planilha oficial.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div id="poll-status" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide shadow-sm"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div id="hotels-container" class="space-y-12"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;!-- 5. LOGISTICS TAB --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;section id="logistics" class="tab-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;!-- AI Tool: Packing List --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="bg-slate-800 rounded-2xl p-6 mb-8 text-white shadow-xl relative overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -mr-10 -mt-10"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;h3 class="text-base font-bold mb-2 flex items-center gap-2 relative z-10"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;i class="fa-solid fa-suitcase"&gt;&lt;/i&gt; Planejador de Malas Inteligente</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;p class="text-xs text-slate-300 mb-5 relative z-10"&gt;A IA analisará o clima de Junho e o roteiro (cidade + praia + jantares) para criar sua lista.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;button id="generatePackingBtn" class="w-full py-3 bg-white/10 hover:bg-white/20 rounded-xl font-bold text-sm transition-all border border-white/10 flex items-center justify-center gap-2 relative z-10 backdrop-blur-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;i class="fa-solid fa-bolt"&gt;&lt;/i&gt; Gerar Lista</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div id="packingResult" class="mt-5 hidden text-xs text-slate-200 bg-black/20 p-5 rounded-xl leading-relaxed whitespace-pre-line border border-white/5"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;h3 class="font-bold text-slate-700 text-sm mb-4 ml-1"&gt;&lt;i class="fa-solid fa-map text-slate-400 mr-2"&gt;&lt;/i&gt;Mapa da Região&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="w-full h-72 bg-slate-100 rounded-xl overflow-hidden relative shadow-inner"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1458377.657456324!2d5.9311119!3d43.529742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sfr!4v1620000000000!5m2!1sen!2sfr" loading="lazy"&gt;&lt;/iframe&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;!-- 6. HIGHLIGHTS TAB --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;section id="highlights" class="tab-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;/main&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;!-- Chat Widget --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;div class="chat-window" id="chatWindow"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;div class="bg-rose-600 p-4 flex justify-between items-center text-white rounded-t-3xl shadow-md"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="font-bold flex items-center gap-2 text-sm"&gt;&lt;i class="fa-solid fa-robot"&gt;&lt;/i&gt; Concierge IA&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;button id="closeChat" class="hover:bg-white/20 w-8 h-8 rounded-full transition-colors flex items-center justify-center"&gt;&lt;i class="fa-solid fa-xmark"&gt;&lt;/i&gt;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;div class="flex-1 p-4 overflow-y-auto bg-slate-50 flex flex-col gap-3" id="chatMessages"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-xs self-start max-w-[85%] text-slate-600 leading-relaxed"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>Bonjour! Sou seu assistente virtual. Posso ajudar com detalhes do roteiro, previsão do tempo, ou traduzir frases para francês.</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;div class="p-3 bg-white border-t border-slate-100 flex gap-2 rounded-b-3xl"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;input type="text" id="chatInput" placeholder="Digite sua dúvida..." class="flex-1 px-4 py-2 border border-slate-200 rounded-full text-sm focus:outline-none focus:border-rose-500 transition-colors bg-slate-50"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;button id="sendMessage" class="w-10 h-10 bg-rose-600 text-white rounded-full flex items-center justify-center shadow-lg shadow-rose-200 active:scale-95 transition-transform"&gt;&lt;i class="fa-solid fa-paper-plane text-xs"&gt;&lt;/i&gt;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;div class="chat-btn" id="toggleChat"&gt;&lt;i class="fa-regular fa-comment-dots"&gt;&lt;/i&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;!-- JAVASCRIPT LOGIC --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// ==========================================</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// 1. CONFIGURATION</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// ==========================================</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const API_KEY = "AIzaSyCB2zNVCasr1B3FAJAMvJ4GuXtbeFZsmz8"; // CHAVE INSERIDA</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const POLL_DEADLINE = new Date('2025-12-01T23:59:59');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// ==========================================</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// 2. DATA (SYNCED WITH WORD &amp; EXCEL)</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// ==========================================</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const itinerary = [</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 1, date: "29/05", title: "Paris: Montmartre &amp; Torre Eiffel", morning: "Chegada a Paris. Traslado ao Hotel Le Meurice. Visita a Montmartre: Basílica de Sacré-Cœur e Place du Tertre (artistas).", afternoon: "Musée d’Orsay (Impressionismo) e caminhada no Jardim das Tulherias.", evening: "Torre Eiffel iluminada e jantar no Le Jules Verne (2º andar).", context: "Eiffel Tower view from Le Jules Verne restaurant", loc: "Le Jules Verne" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 2, date: "30/05", title: "Paris → Avignon", morning: "Manhã no Marais (Place des Vosges). Almoço histórico no Le Train Bleu (Gare de Lyon).", afternoon: "TGV para Avignon (2h40). Check-in La Mirande ou d'Europe.", evening: "Passeio pela Place de l’Horloge e Palais des Papes à noite.", context: "Le Train Bleu restaurant Paris interior", loc: "Le Train Bleu" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 3, date: "31/05", title: "Avignon: Cidade dos Papas", morning: "Visita guiada ao Palais des Papes e Jardim do Rocher des Doms.", afternoon: "Rue des Teinturiers e degustação de vinhos Châteauneuf-du-Pape.", evening: "Jantar no Christian Étienne ou no hotel.", context: "Palais des Papes Avignon exterior", loc: "Palais des Papes" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 4, date: "01/06", title: "Luberon: Lavandas e Vilarejos", morning: "Museu da Lavanda, Gordes e vista da Abbaye de Sénanque.", afternoon: "Trilha dos Ocres em Roussillon. Ménerbes.", evening: "Jantar em Avignon (sugestão: L’Agape).", context: "Gordes village Provence panoramic", loc: "Gordes" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 5, date: "02/06", title: "Avignon → Aix-en-Provence", morning: "Pont du Gard (Aqueduto) e Les Baux-de-Provence.", afternoon: "Arte imersiva nas Carrières de Lumières. Chegada em Aix.", evening: "Jantar no Les Deux Garçons (Cours Mirabeau).", context: "Carrieres de Lumieres art exhibition", loc: "Carrières de Lumières" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 6, date: "03/06", title: "Aix: Calanques &amp; Vinho", morning: "Ida a Cassis. Passeio de barco nas Calanques (fiordes).", afternoon: "Almoço no porto. Visita a Le Castellet e vinhos de Bandol.", evening: "Noite livre em Aix-en-Provence.", context: "Calanques de Cassis turquoise water", loc: "Cassis" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 7, date: "04/06", title: "Aix → Marseille", morning: "Platô de Valensole (Lavandas) e fábrica L’Occitane.", afternoon: "Chegada em Marseille (InterContinental). Notre-Dame de la Garde.", evening: "Bouillabaisse no Chez Fonfon.", context: "Valensole lavender fields sunset", loc: "Chez Fonfon" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 8, date: "05/06", title: "Marseille: História &amp; Mar", morning: "Vieux Port e Le Panier. Vieille Charité.", afternoon: "MuCEM e barco ao Château d’If.", evening: "Jantar no Cours Julien ou Le Miramar.", context: "Marseille Vieux Port boats", loc: "Vieux Port Marseille" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 9, date: "06/06", title: "Marseille → Nice", morning: "Saint-Tropez (Porto e Sénéquier).", afternoon: "Tarte Tropézienne. Viagem costeira para Nice (Negresco).", evening: "Jantar no Le Chantecler.", context: "Saint Tropez harbor luxury yachts", loc: "Saint-Tropez" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 10, date: "07/06", title: "Arte na Riviera", morning: "Vence (Capela Matisse).", afternoon: "Saint-Paul-de-Vence e almoço no La Colombe d’Or.", evening: "Jantar no Cours Saleya em Nice.", context: "Saint Paul de Vence cobblestone streets", loc: "Saint-Paul-de-Vence" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 11, date: "08/06", title: "Antibes &amp; Cannes", morning: "Antibes (Museu Picasso).", afternoon: "Cannes (La Croisette e Palácio dos Festivais).", evening: "Jantar no porto de Nice.", context: "Cannes La Croisette palm trees", loc: "Cannes" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 12, date: "09/06", title: "Alma de Nice", morning: "Mercado das Flores e Vieux Nice.", afternoon: "Museus Matisse e Chagall. Ruínas Romanas.", evening: "Jantar típico 'Nissarde' e Colline du Château.", context: "Nice Old Town colorful buildings", loc: "Vieux Nice" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 13, date: "10/06", title: "Mônaco &amp; Èze", morning: "Mônaco (Cassino, Palácio) e Èze Village.", afternoon: "Praia em Nice ou compras.", evening: "Despedida nos bares de vinho.", context: "Monaco Monte Carlo Casino exterior", loc: "Casino de Monte-Carlo" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 14, date: "11/06", title: "Despedida da Riviera", morning: "Aula de Culinária ou Piquenique.", afternoon: "Parc Phoenix.", evening: "Jantar no Le Plongeoir (sobre o mar).", context: "Le Plongeoir restaurant Nice", loc: "Le Plongeoir" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 15, date: "12/06", title: "Nice → Paris", morning: "Manhã livre (Menton opcional).", afternoon: "Voo para Paris (CDG).", evening: "Pernoite próximo ao aeroporto.", context: "Menton France lemon festival", loc: "Menton" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ day: 16, date: "13/06", title: "Retorno", morning: "Embarque CDG.", afternoon: "Voo Air France (13:20).", evening: "Chegada em Fortaleza (17:35).", context: "Air France plane sky", loc: "Charles de Gaulle Airport" }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>];</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const hotels = {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>"Paris": [{ name: "Meilá Paris", stars: "4★", dates: "30/05-31/05", price: "R$ 1.452", desc: "Opção da planilha.", img: "Melia Paris Hotel facade" }],</p>
-<p class="p1"><span class="Apple-converted-space">             </span>"Avignon": [</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>{ name: "La Mirande", stars: "5★", dates: "31/05-03/06", price: "R$ 12.699", desc: "Histórico, luxo supremo.", img: "La Mirande Avignon interior" },</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>{ name: "Hôtel d’Europe", stars: "5★", dates: "31/05-03/06", price: "R$ 6.794", desc: "Clássico e elegante.", img: "Hotel d Europe Avignon courtyard" }</p>
-<p class="p1"><span class="Apple-converted-space">             </span>],</p>
-<p class="p1"><span class="Apple-converted-space">             </span>"Aix-en-Provence": [</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>{ name: "Hôtel Le Pigonnet", stars: "5★", dates: "03/06-05/06", price: "R$ 6.174", desc: "Jardins de Cézanne.", img: "Hotel Le Pigonnet Aix garden" },</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>{ name: "Villa Gallici", stars: "5★", dates: "03/06-05/06", price: "R$ 12.647", desc: "Relais &amp; Châteaux.", img: "Villa Gallici Aix Hotel pool" },</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>{ name: "Renaissance", stars: "4★", dates: "03/06-05/06", price: "R$ 4.971", desc: "Moderno e central.", img: "Renaissance Aix Hotel exterior" }</p>
-<p class="p1"><span class="Apple-converted-space">             </span>],</p>
-<p class="p1"><span class="Apple-converted-space">             </span>"Marseille": [{ name: "InterContinental", stars: "5★", dates: "05/06-07/06", price: "Sob Consulta", desc: "Vista icônica para Notre-Dame.", img: "InterContinental Marseille Hotel Dieu" }],</p>
-<p class="p1"><span class="Apple-converted-space">             </span>"Nice": [{ name: "Hotel Le Negresco", stars: "5★", dates: "07/06-12/06", price: "Sob Consulta", desc: "O ícone da Riviera Francesa.", img: "Hotel Negresco Nice exterior" }]</p>
-<p class="p1"><span class="Apple-converted-space">         </span>};</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const gastronomy = [</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ title: "Le Jules Verne", loc: "Paris", desc: "Jantar 1★ Michelin na Torre Eiffel.", img: "Jules Verne Restaurant Paris view" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ title: "Le Train Bleu", loc: "Paris", desc: "Almoço em monumento histórico.", img: "Le Train Bleu Restaurant interior" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ title: "Chez Fonfon", loc: "Marseille", desc: "A autêntica Bouillabaisse.", img: "Bouillabaisse Marseille dish" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ title: "La Colombe d'Or", loc: "St-Paul", desc: "Onde Picasso comia.", img: "Colombe d Or Saint Paul de Vence art" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ title: "Le Chantecler", loc: "Nice", desc: "Alta gastronomia no Negresco.", img: "Le Chantecler Restaurant Nice table" },</p>
-<p class="p1"><span class="Apple-converted-space">             </span>{ title: "Le Plongeoir", loc: "Nice", desc: "Jantar sobre o mar.", img: "Le Plongeoir Nice sunset" }</p>
-<p class="p1"><span class="Apple-converted-space">         </span>];</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// ==========================================</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// 3. APPLICATION LOGIC</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// ==========================================</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// TABS</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const tabs = document.querySelectorAll('.tab-button');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const contents = document.querySelectorAll('.tab-content');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>tabs.forEach(btn =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>btn.addEventListener('click', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>tabs.forEach(t =&gt; t.classList.remove('active'));</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>contents.forEach(c =&gt; c.classList.remove('active'));</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>btn.classList.add('active');</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>document.getElementById(btn.dataset.tab).classList.add('active');</p>
-<p class="p1"><span class="Apple-converted-space">             </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// RENDER: ITINERARY</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const accContainer = document.getElementById('accordion-container');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>itinerary.forEach(item =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>// Dynamic Image via Pollinations</p>
-<p class="p1"><span class="Apple-converted-space">             </span>const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(item.context)}%20cinematic%20lighting%204k?width=800&amp;height=400&amp;nologo=true`;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>accContainer.innerHTML += `</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden group"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="p-4 flex justify-between items-center cursor-pointer active:bg-slate-50 transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="flex items-center gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="bg-rose-50 text-rose-700 text-xs font-bold px-2 py-1 rounded-lg border border-rose-100 text-center min-w-[55px]"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>${item.day}&lt;br&gt;&lt;span class="text-[9px] text-slate-400 opacity-80 font-normal"&gt;${item.date}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;h4 class="font-bold text-slate-800 text-sm md:text-base leading-tight"&gt;${item.title}&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;a href="https://www.google.com/maps/search/?api=1&amp;query=${item.loc}" target="_blank" class="text-[10px] text-blue-500 font-bold flex items-center gap-1 mt-1 hover:text-blue-700 transition-colors" onclick="event.stopPropagation()"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>&lt;i class="fa-solid fa-location-dot"&gt;&lt;/i&gt; Ver Localização</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;i class="fa-solid fa-chevron-down text-slate-300 text-xs"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="hidden border-t border-slate-50 bg-slate-50/30"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="h-32 overflow-hidden relative"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;img src="${imgUrl}" loading="lazy" class="w-full h-full object-cover opacity-95"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-black/60 to-transparent"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="p-5 text-sm text-slate-600 space-y-3 leading-relaxed"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="flex gap-2"&gt;&lt;span class="text-rose-700 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5"&gt;Manhã&lt;/span&gt; &lt;span&gt;${item.morning}&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="flex gap-2"&gt;&lt;span class="text-rose-700 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5"&gt;Tarde&lt;/span&gt; &lt;span&gt;${item.afternoon}&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="flex gap-2"&gt;&lt;span class="text-indigo-900 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5"&gt;Noite&lt;/span&gt; &lt;span&gt;${item.evening}&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// RENDER: HOTELS</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const hotelContainer = document.getElementById('hotels-container');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const isPollOpen = new Date() &lt;= POLL_DEADLINE;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const pollStatus = document.getElementById('poll-status');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>if (isPollOpen) {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>pollStatus.textContent = "Votação Ativa até 01/12/2025";</p>
-<p class="p1"><span class="Apple-converted-space">             </span>pollStatus.className += " bg-emerald-50 text-emerald-700 border border-emerald-100";</p>
-<p class="p1"><span class="Apple-converted-space">         </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>pollStatus.textContent = "Votação Encerrada";</p>
-<p class="p1"><span class="Apple-converted-space">             </span>pollStatus.className += " bg-slate-100 text-slate-500 border border-slate-200";</p>
-<p class="p1"><span class="Apple-converted-space">         </span>}</p>
-<p class="p1"><span class="Apple-converted-space">         </span>Object.entries(hotels).forEach(([city, options]) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>let optionsHtml = "";</p>
-<p class="p1"><span class="Apple-converted-space">             </span>options.forEach((h, index) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(h.img)}?width=800&amp;height=500&amp;nologo=true`;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>const voteKey = `vote_${city}_${index}`;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>const hasVoted = localStorage.getItem(voteKey) === "1";</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>optionsHtml += `</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="grid grid-cols-1 md:grid-cols-[2fr,3fr] gap-4 bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="card-zoom h-40 md:h-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;img src="${imgUrl}" loading="lazy"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="p-4 flex flex-col justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;div class="flex items-center justify-between gap-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                         </span>&lt;h4 class="font-bold text-slate-800 text-sm md:text-base"&gt;${h.name}&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                         </span>&lt;p class="text-[11px] text-amber-500 font-semibold"&gt;${h.stars}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>&lt;div class="text-right"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                         </span>&lt;p class="text-[11px] text-slate-400 uppercase tracking-wide"&gt;Período&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                         </span>&lt;p class="text-xs font-semibold text-slate-700"&gt;${h.dates}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;p class="text-xs text-slate-500 mt-2"&gt;${h.desc}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="flex items-center justify-between mt-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>&lt;p class="text-[11px] text-slate-400 uppercase tracking-wide"&gt;Estimativa&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>&lt;p class="text-sm font-bold text-slate-800"&gt;${h.price}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;button</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>class="vote-btn px-3 py-2 border border-rose-200 rounded-full text-[10px] font-bold tracking-wide flex items-center gap-1 ${hasVoted ? 'selected' : ''}"</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>data-vote-key="${voteKey}"</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>${!isPollOpen || hasVoted ? 'disabled' : ''}</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                     </span>&lt;i class="fa-solid fa-heart"&gt;&lt;/i&gt; ${hasVoted ? 'Seu Voto' : 'Votar'}</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>});</p>
-<p class="p1"><span class="Apple-converted-space">             </span>hotelContainer.innerHTML += `</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="space-y-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="flex items-center gap-2 mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;i class="fa-solid fa-location-dot"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;h3 class="text-sm font-bold text-slate-800 uppercase tracking-wide"&gt;${city}&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;p class="text-[11px] text-slate-400"&gt;Seleção de opções especiais&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="space-y-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>${optionsHtml}</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// Attach voting handlers</p>
-<p class="p1"><span class="Apple-converted-space">         </span>document.querySelectorAll('.vote-btn').forEach(btn =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>btn.addEventListener('click', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>const key = btn.getAttribute('data-vote-key');</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>localStorage.setItem(key, "1");</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>btn.classList.add('selected');</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>btn.disabled = true;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>btn.innerHTML = '&lt;i class="fa-solid fa-heart"&gt;&lt;/i&gt; Seu Voto';</p>
-<p class="p1"><span class="Apple-converted-space">             </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// RENDER: GASTRONOMY</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const gastronomyGrid = document.getElementById('gastronomy-grid');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>gastronomy.forEach(item =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(item.img)}?width=800&amp;height=500&amp;nologo=true`;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>gastronomyGrid.innerHTML += `</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm flex flex-col"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="card-zoom h-32"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;img src="${imgUrl}" loading="lazy"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="p-4 flex-1 flex flex-col justify-between"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>div class="text-[11px] text-slate-400 uppercase tracking-wide mb-1"&gt;${item.loc}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;h4 class="font-bold text-sm text-slate-800 mb-1"&gt;${item.title}&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;p class="text-xs text-slate-500"&gt;${item.desc}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="mt-3 flex justify-between items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(item.title + ' ' + item.loc)}" target="_blank" class="text-[11px] font-semibold text-blue-500 flex items-center gap-1 hover:text-blue-700"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;i class="fa-solid fa-location-dot"&gt;&lt;/i&gt; Ver no mapa</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// RENDER: GALLERY (HIGHLIGHTS)</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const galleryGrid = document.getElementById('gallery-grid');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const galleryItems = [</p>
-<p class="p1"><span class="Apple-converted-space">             </span>"Riviera France coastline aerial view sunset",</p>
-<p class="p1"><span class="Apple-converted-space">             </span>"Provence lavender fields in bloom sunset",</p>
-<p class="p1"><span class="Apple-converted-space">             </span>"Nice France promenade des anglais summer",</p>
-<p class="p1"><span class="Apple-converted-space">             </span>"Saint Paul de Vence village stone streets"</p>
-<p class="p1"><span class="Apple-converted-space">         </span>];</p>
-<p class="p1"><span class="Apple-converted-space">         </span>galleryItems.forEach(prompt =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&amp;height=600&amp;nologo=true`;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>galleryGrid.innerHTML += `</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="relative rounded-2xl overflow-hidden shadow-sm card-zoom"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;img src="${imgUrl}" loading="lazy" class="w-full h-56 object-cover"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// Chart: Theme Focus</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const ctx = document.getElementById('themeChart').getContext('2d');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>new Chart(ctx, {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>type: 'doughnut',</p>
-<p class="p1"><span class="Apple-converted-space">             </span>data: {</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>labels: ['Gastronomia', 'Cultura &amp; História', 'Natureza &amp; Paisagens', 'Descanso'],</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>datasets: [{</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>data: [30, 30, 25, 15],</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>backgroundColor: ['#be123c', '#3b82f6', '#10b981', '#f59e0b']</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>}]</p>
-<p class="p1"><span class="Apple-converted-space">             </span>},</p>
-<p class="p1"><span class="Apple-converted-space">             </span>options: {</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>plugins: {</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>legend: { display: false }</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>cutout: '65%'</p>
-<p class="p1"><span class="Apple-converted-space">             </span>}</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// AI TOOLS (mocked with front-end logic)</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// Menu Translator</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const menuInput = document.getElementById('menuInput');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const menuResult = document.getElementById('menuResult');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>document.getElementById('decodeMenuBtn').addEventListener('click', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>const value = menuInput.value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">             </span>if (!value) return;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>menuResult.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">             </span>menuResult.innerHTML = `&lt;strong&gt;${value}&lt;/strong&gt;: prato típico francês. &lt;br&gt;Explicação detalhada pode ser consultada na IA do Ted.`;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// Packing List Generator</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const packingResult = document.getElementById('packingResult');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>document.getElementById('generatePackingBtn').addEventListener('click', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>packingResult.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">             </span>packingResult.textContent = `Sugestão de mala para 16 dias (Primavera/Verão na Riviera Francesa):</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- 6 a 8 camisetas / camisas leves</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- 3 calças leves / jeans</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- 2 bermudas / saias</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- 1 blazer leve ou jaqueta</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- 1 suéter fino para noites mais frescas</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- 2 roupas para jantares especiais (smart casual / esporte fino)</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- 1 traje de banho + saída de praia</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- 1 tênis confortável para caminhadas</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- 1 par de sapatos elegantes</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- 1 sandália confortável</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- Acessórios: óculos escuros, chapéu, cinto, echarpe</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- Farmacinha básica e itens de higiene pessoal</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- Adaptador de tomada (padrão europeu)</p>
-<p class="p1"><span class="Apple-converted-space">             </span>- Documentos, cartões, cópia de reservas e seguro viagem.`;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// Chat Widget</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const chatWindow = document.getElementById('chatWindow');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const toggleChat = document.getElementById('toggleChat');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const closeChat = document.getElementById('closeChat');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const chatInput = document.getElementById('chatInput');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const chatMessages = document.getElementById('chatMessages');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>const sendMessageBtn = document.getElementById('sendMessage');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>toggleChat.addEventListener('click', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>chatWindow.classList.add('open');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>closeChat.addEventListener('click', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>chatWindow.classList.remove('open');</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>function addMessage(text, from = 'user') {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>const bubble = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">             </span>bubble.className = `p-3 rounded-2xl shadow-sm border text-xs max-w-[85%] leading-relaxed ${from === 'user'</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>? 'bg-rose-600 text-white self-end rounded-tr-none border-rose-500'</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>: 'bg-white text-slate-600 self-start rounded-tl-none border-slate-100'</p>
-<p class="p1"><span class="Apple-converted-space">             </span>}`;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>bubble.textContent = text;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>chatMessages.appendChild(bubble);</p>
-<p class="p1"><span class="Apple-converted-space">             </span>chatMessages.scrollTop = chatMessages.scrollHeight;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>}</p>
-<p class="p1"><span class="Apple-converted-space">         </span>function addTyping() {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>const wrapper = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">             </span>wrapper.className = "typing-indicator self-start bg-white border border-slate-100 rounded-2xl px-3 py-2 text-xs text-slate-500 flex items-center gap-1";</p>
-<p class="p1"><span class="Apple-converted-space">             </span>wrapper.innerHTML = `&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>chatMessages.appendChild(wrapper);</p>
-<p class="p1"><span class="Apple-converted-space">             </span>chatMessages.scrollTop = chatMessages.scrollHeight;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>return wrapper;</p>
-<p class="p1"><span class="Apple-converted-space">         </span>}</p>
-<p class="p1"><span class="Apple-converted-space">         </span>function sendMessage() {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>const text = chatInput.value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">             </span>if (!text) return;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>addMessage(text, 'user');</p>
-<p class="p1"><span class="Apple-converted-space">             </span>chatInput.value = '';</p>
-<p class="p1"><span class="Apple-converted-space">             </span>const typing = addTyping();</p>
-<p class="p1"><span class="Apple-converted-space">             </span>setTimeout(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>typing.remove();</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>addMessage("Mensagem recebida! Esta é uma simulação local. A versão conectada à IA do Ted poderá responder com detalhes sobre roteiros, clima e traduções.", 'bot');</p>
-<p class="p1"><span class="Apple-converted-space">             </span>}, 1200);</p>
-<p class="p1"><span class="Apple-converted-space">         </span>}</p>
-<p class="p1"><span class="Apple-converted-space">         </span>sendMessageBtn.addEventListener('click', sendMessage);</p>
-<p class="p1"><span class="Apple-converted-space">         </span>chatInput.addEventListener('keydown', (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>if (e.key === 'Enter') sendMessage();</p>
-<p class="p1"><span class="Apple-converted-space">         </span>});</p>
-<p class="p1"><span class="Apple-converted-space">         </span>// WEATHER HELPER (placeholder)</p>
-<p class="p1"><span class="Apple-converted-space">         </span>async function fetchWeatherPlaceholder() {</p>
-<p class="p1"><span class="Apple-converted-space">             </span>return {</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>summary: "Temperaturas amenas (18º–26ºC), sol com algumas nuvens e baixa chance de chuva.",</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>recommendation: "Levar camadas leves, um casaco fino para noite e roupa de banho para a Riviera."</p>
-<p class="p1"><span class="Apple-converted-space">             </span>};</p>
-<p class="p1"><span class="Apple-converted-space">         </span>}</p>
-<p class="p1"><span class="Apple-converted-space">         </span>console.log("App Riviera Francesa carregado. Analisando previsão do tempo...");</p>
-<p class="p1"><span class="Apple-converted-space">     </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+     <!-- App Header -->
+     <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm/50">
+         <div class="container mx-auto px-4 py-5 text-center">
+             <div class="inline-block bg-rose-50 border border-rose-100 px-3 py-1 rounded-full mb-2">
+                 <p class="text-[10px] font-bold text-rose-600 uppercase tracking-widest">29 Maio – 13 Junho 2026</p>
+             </div>
+             <h1 class="text-3xl md:text-4xl font-bold text-slate-900 serif-font tracking-tight">Riviera Francesa</h1>
+             <p class="text-sm text-slate-500 font-light italic mt-1">Nossa Experiência Exclusiva</p>
+         </div>
+         <!-- Mobile Tabs -->
+         <div class="w-full overflow-x-auto nav-scroll bg-white/95 backdrop-blur border-t border-slate-50">
+             <div class="flex px-2 min-w-max md:justify-center gap-1">
+                 <button class="tab-button active" data-tab="overview"><i class="fa-solid fa-compass"></i>Visão Geral</button>
+                 <button class="tab-button" data-tab="itinerary"><i class="fa-regular fa-calendar-days"></i>Roteiro</button>
+                 <button class="tab-button" data-tab="gastronomy"><i class="fa-solid fa-utensils"></i>Sabores &amp; IA</button>
+                 <button class="tab-button" data-tab="hotels"><i class="fa-solid fa-bed"></i>Hotéis</button>
+                 <button class="tab-button" data-tab="logistics"><i class="fa-solid fa-suitcase-rolling"></i>Logística</button>
+                 <button class="tab-button" data-tab="highlights"><i class="fa-solid fa-camera-retro"></i>Galeria</button>
+             </div>
+         </div>
+     </header>
+     <!-- Main Content -->
+     <main class="container mx-auto px-4 py-8 max-w-5xl">
+         <!-- 1. OVERVIEW TAB -->
+         <section id="overview" class="tab-content active">
+             <!-- Stats Grid -->
+             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center">
+                     <div class="text-3xl font-bold text-rose-700 serif-font">16</div>
+                     <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1">Dias</div>
+                 </div>
+                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center">
+                     <div class="text-3xl font-bold text-rose-700 serif-font">5</div>
+                     <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1">Bases</div>
+                 </div>
+                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center">
+                     <div class="text-3xl font-bold text-rose-700 serif-font">3</div>
+                     <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1">Regiões</div>
+                 </div>
+                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center">
+                     <div class="text-3xl font-bold text-rose-700 serif-font">∞</div>
+                     <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1">Memórias</div>
+                 </div>
+             </div>
+             <!-- Alert Box -->
+             <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-xl mb-10 flex items-start gap-4 shadow-sm">
+                 <div class="bg-amber-100 p-2 rounded-full text-amber-600"><i class="fa-solid fa-bell"></i></div>
+                 <div>
+                     <h3 class="font-bold text-amber-900 text-sm uppercase tracking-wide mb-1">Votação Aberta</h3>
+                     <p class="text-xs text-amber-700 leading-relaxed">Existem múltiplas opções de hospedagem em Avignon e Aix-en-Provence. Vote na aba <strong>Hotéis</strong> até <strong>01/12/2025</strong>.</p>
+                 </div>
+             </div>
+             <!-- Timeline & Chart -->
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                 <div class="md:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                     <h3 class="text-lg font-bold text-slate-800 mb-6 serif-font flex items-center gap-2"><i class="fa-solid fa-route text-rose-500"></i> Jornada Resumida</h3>
+                     <div class="space-y-8 border-l-2 border-slate-100 pl-6 ml-2 relative">
+                         <div class="relative">
+                             <div class="absolute -left-[33px] top-1 w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
+                             <h4 class="font-bold text-slate-900 text-sm">Paris</h4>
+                             <p class="text-xs text-slate-500 mt-1">29/05 - 30/05 • Chegada, Montmartre &amp; Gastronomia</p>
+                         </div>
+                         <div class="relative">
+                             <div class="absolute -left-[33px] top-1 w-5 h-5 bg-purple-600 rounded-full border-4 border-white shadow-sm"></div>
+                             <h4 class="font-bold text-slate-900 text-sm">Provence</h4>
+                             <p class="text-xs text-slate-500 mt-1">30/05 - 06/06 • Avignon, Aix, Lavanda &amp; Vinhos</p>
+                         </div>
+                         <div class="relative">
+                             <div class="absolute -left-[33px] top-1 w-5 h-5 bg-teal-500 rounded-full border-4 border-white shadow-sm"></div>
+                             <h4 class="font-bold text-slate-900 text-sm">Riviera &amp; Nice</h4>
+                             <p class="text-xs text-slate-500 mt-1">06/06 - 13/06 • Costa Azul, Mônaco &amp; Retorno</p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-center">
+                     <h3 class="text-lg font-bold text-slate-800 mb-4 serif-font text-center">Foco da Viagem</h3>
+                     <div class="relative w-full h-48">
+                         <canvas id="themeChart"></canvas>
+                     </div>
+                 </div>
+             </div>
+         </section>
+         <!-- 2. ITINERARY TAB -->
+         <section id="itinerary" class="tab-content">
+             <div class="text-center mb-8">
+                 <p class="text-xs text-slate-400 uppercase tracking-widest font-bold">Detalhes Dia a Dia</p>
+             </div>
+             <div id="accordion-container" class="space-y-4 max-w-3xl mx-auto"></div>
+         </section>
+         <!-- 3. GASTRONOMY TAB -->
+         <section id="gastronomy" class="tab-content">
+             <!-- AI Tool: Menu Translator -->
+             <div class="bg-white rounded-2xl shadow-lg shadow-rose-100/50 border border-rose-100 p-6 mb-10 relative overflow-hidden">
+                 <div class="absolute -right-6 -top-6 w-24 h-24 bg-rose-50 rounded-full opacity-50"></div>
+                 <h3 class="text-base font-bold text-slate-800 mb-2 flex items-center gap-2 relative z-10">
+                     <i class="fa-solid fa-wand-magic-sparkles text-rose-500"></i> Tradutor de Menu IA
+                 </h3>
+                 <p class="text-xs text-slate-500 mb-4 relative z-10">Encontrou um prato desconhecido? Digite o nome e a IA explica.</p>
+                 <div class="flex gap-2 relative z-10">
+                     <input type="text" id="menuInput" placeholder="Ex: Coq au Vin, Escargot..." class="flex-1 px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 transition-shadow">
+                     <button id="decodeMenuBtn" class="bg-rose-600 text-white px-5 py-3 rounded-xl font-bold text-sm hover:bg-rose-700 transition-colors shadow-md shadow-rose-200">Ver</button>
+                 </div>
+                 <div id="menuResult" class="mt-4 hidden text-sm bg-slate-50 p-4 rounded-xl text-slate-700 border border-slate-100 shadow-inner leading-relaxed"></div>
+             </div>
+             <div id="gastronomy-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+         </section>
+         <!-- 4. HOTELS TAB -->
+         <section id="hotels" class="tab-content">
+             <div class="flex justify-between items-end mb-8 px-2">
+                 <div>
+                     <h2 class="text-2xl font-bold text-slate-900 serif-font">Hotelaria</h2>
+                     <p class="text-xs text-slate-500 mt-1">Cotação baseada na planilha oficial.</p>
+                 </div>
+                 <div id="poll-status" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide shadow-sm"></div>
+             </div>
+             <div id="hotels-container" class="space-y-12"></div>
+         </section>
+         <!-- 5. LOGISTICS TAB -->
+         <section id="logistics" class="tab-content">
+             <!-- AI Tool: Packing List -->
+             <div class="bg-slate-800 rounded-2xl p-6 mb-8 text-white shadow-xl relative overflow-hidden">
+                 <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -mr-10 -mt-10"></div>
+                 <h3 class="text-base font-bold mb-2 flex items-center gap-2 relative z-10">
+                     <i class="fa-solid fa-suitcase"></i> Planejador de Malas Inteligente
+                 </h3>
+                 <p class="text-xs text-slate-300 mb-5 relative z-10">A IA analisará o clima de Junho e o roteiro (cidade + praia + jantares) para criar sua lista.</p>
+                 <button id="generatePackingBtn" class="w-full py-3 bg-white/10 hover:bg-white/20 rounded-xl font-bold text-sm transition-all border border-white/10 flex items-center justify-center gap-2 relative z-10 backdrop-blur-sm">
+                     <i class="fa-solid fa-bolt"></i> Gerar Lista
+                 </button>
+                 <div id="packingResult" class="mt-5 hidden text-xs text-slate-200 bg-black/20 p-5 rounded-xl leading-relaxed whitespace-pre-line border border-white/5"></div>
+             </div>
+             <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                 <h3 class="font-bold text-slate-700 text-sm mb-4 ml-1"><i class="fa-solid fa-map text-slate-400 mr-2"></i>Mapa da Região</h3>
+                 <div class="w-full h-72 bg-slate-100 rounded-xl overflow-hidden relative shadow-inner">
+                     <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1458377.657456324!2d5.9311119!3d43.529742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sfr!4v1620000000000!5m2!1sen!2sfr" loading="lazy"></iframe>
+                 </div>
+             </div>
+         </section>
+         <!-- 6. HIGHLIGHTS TAB -->
+         <section id="highlights" class="tab-content">
+             <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+         </section>
+     </main>
+     <!-- Chat Widget -->
+     <div class="chat-window" id="chatWindow">
+         <div class="bg-rose-600 p-4 flex justify-between items-center text-white rounded-t-3xl shadow-md">
+             <div class="font-bold flex items-center gap-2 text-sm"><i class="fa-solid fa-robot"></i> Concierge IA</div>
+             <button id="closeChat" class="hover:bg-white/20 w-8 h-8 rounded-full transition-colors flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+         </div>
+         <div class="flex-1 p-4 overflow-y-auto bg-slate-50 flex flex-col gap-3" id="chatMessages">
+             <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-xs self-start max-w-[85%] text-slate-600 leading-relaxed">
+                 Bonjour! Sou seu assistente virtual. Posso ajudar com detalhes do roteiro, previsão do tempo, ou traduzir frases para francês.
+             </div>
+         </div>
+         <div class="p-3 bg-white border-t border-slate-100 flex gap-2 rounded-b-3xl">
+             <input type="text" id="chatInput" placeholder="Digite sua dúvida..." class="flex-1 px-4 py-2 border border-slate-200 rounded-full text-sm focus:outline-none focus:border-rose-500 transition-colors bg-slate-50">
+             <button id="sendMessage" class="w-10 h-10 bg-rose-600 text-white rounded-full flex items-center justify-center shadow-lg shadow-rose-200 active:scale-95 transition-transform"><i class="fa-solid fa-paper-plane text-xs"></i></button>
+         </div>
+     </div>
+     <div class="chat-btn" id="toggleChat"><i class="fa-regular fa-comment-dots"></i></div>
+     <!-- JAVASCRIPT LOGIC -->
+     <script>
+         // ==========================================
+         // 1. CONFIGURATION
+         // ==========================================
+         const API_KEY = "AIzaSyCB2zNVCasr1B3FAJAMvJ4GuXtbeFZsmz8"; // CHAVE INSERIDA
+         const POLL_DEADLINE = new Date('2025-12-01T23:59:59');
+         // ==========================================
+         // 2. DATA (SYNCED WITH WORD & EXCEL)
+         // ==========================================
+         const itinerary = [
+             { day: 1, date: "29/05", title: "Paris: Montmartre & Torre Eiffel", morning: "Chegada a Paris. Traslado ao Hotel Le Meurice. Visita a Montmartre: Basílica de Sacré-Cœur e Place du Tertre (artistas).", afternoon: "Musée d’Orsay (Impressionismo) e caminhada no Jardim das Tulherias.", evening: "Torre Eiffel iluminada e jantar no Le Jules Verne (2º andar).", context: "Eiffel Tower view from Le Jules Verne restaurant", loc: "Le Jules Verne" },
+             { day: 2, date: "30/05", title: "Paris → Avignon", morning: "Manhã no Marais (Place des Vosges). Almoço histórico no Le Train Bleu (Gare de Lyon).", afternoon: "TGV para Avignon (2h40). Check-in La Mirande ou d'Europe.", evening: "Passeio pela Place de l’Horloge e Palais des Papes à noite.", context: "Le Train Bleu restaurant Paris interior", loc: "Le Train Bleu" },
+             { day: 3, date: "31/05", title: "Avignon: Cidade dos Papas", morning: "Visita guiada ao Palais des Papes e Jardim do Rocher des Doms.", afternoon: "Rue des Teinturiers e degustação de vinhos Châteauneuf-du-Pape.", evening: "Jantar no Christian Étienne ou no hotel.", context: "Palais des Papes Avignon exterior", loc: "Palais des Papes" },
+             { day: 4, date: "01/06", title: "Luberon: Lavandas e Vilarejos", morning: "Museu da Lavanda, Gordes e vista da Abbaye de Sénanque.", afternoon: "Trilha dos Ocres em Roussillon. Ménerbes.", evening: "Jantar em Avignon (sugestão: L’Agape).", context: "Gordes village Provence panoramic", loc: "Gordes" },
+             { day: 5, date: "02/06", title: "Avignon → Aix-en-Provence", morning: "Pont du Gard (Aqueduto) e Les Baux-de-Provence.", afternoon: "Arte imersiva nas Carrières de Lumières. Chegada em Aix.", evening: "Jantar no Les Deux Garçons (Cours Mirabeau).", context: "Carrieres de Lumieres art exhibition", loc: "Carrières de Lumières" },
+             { day: 6, date: "03/06", title: "Aix: Calanques & Vinho", morning: "Ida a Cassis. Passeio de barco nas Calanques (fiordes).", afternoon: "Almoço no porto. Visita a Le Castellet e vinhos de Bandol.", evening: "Noite livre em Aix-en-Provence.", context: "Calanques de Cassis turquoise water", loc: "Cassis" },
+             { day: 7, date: "04/06", title: "Aix → Marseille", morning: "Platô de Valensole (Lavandas) e fábrica L’Occitane.", afternoon: "Chegada em Marseille (InterContinental). Notre-Dame de la Garde.", evening: "Bouillabaisse no Chez Fonfon.", context: "Valensole lavender fields sunset", loc: "Chez Fonfon" },
+             { day: 8, date: "05/06", title: "Marseille: História & Mar", morning: "Vieux Port e Le Panier. Vieille Charité.", afternoon: "MuCEM e barco ao Château d’If.", evening: "Jantar no Cours Julien ou Le Miramar.", context: "Marseille Vieux Port boats", loc: "Vieux Port Marseille" },
+             { day: 9, date: "06/06", title: "Marseille → Nice", morning: "Saint-Tropez (Porto e Sénéquier).", afternoon: "Tarte Tropézienne. Viagem costeira para Nice (Negresco).", evening: "Jantar no Le Chantecler.", context: "Saint Tropez harbor luxury yachts", loc: "Saint-Tropez" },
+             { day: 10, date: "07/06", title: "Arte na Riviera", morning: "Vence (Capela Matisse).", afternoon: "Saint-Paul-de-Vence e almoço no La Colombe d’Or.", evening: "Jantar no Cours Saleya em Nice.", context: "Saint Paul de Vence cobblestone streets", loc: "Saint-Paul-de-Vence" },
+             { day: 11, date: "08/06", title: "Antibes & Cannes", morning: "Antibes (Museu Picasso).", afternoon: "Cannes (La Croisette e Palácio dos Festivais).", evening: "Jantar no porto de Nice.", context: "Cannes La Croisette palm trees", loc: "Cannes" },
+             { day: 12, date: "09/06", title: "Alma de Nice", morning: "Mercado das Flores e Vieux Nice.", afternoon: "Museus Matisse e Chagall. Ruínas Romanas.", evening: "Jantar típico 'Nissarde' e Colline du Château.", context: "Nice Old Town colorful buildings", loc: "Vieux Nice" },
+             { day: 13, date: "10/06", title: "Mônaco & Èze", morning: "Mônaco (Cassino, Palácio) e Èze Village.", afternoon: "Praia em Nice ou compras.", evening: "Despedida nos bares de vinho.", context: "Monaco Monte Carlo Casino exterior", loc: "Casino de Monte-Carlo" },
+             { day: 14, date: "11/06", title: "Despedida da Riviera", morning: "Aula de Culinária ou Piquenique.", afternoon: "Parc Phoenix.", evening: "Jantar no Le Plongeoir (sobre o mar).", context: "Le Plongeoir restaurant Nice", loc: "Le Plongeoir" },
+             { day: 15, date: "12/06", title: "Nice → Paris", morning: "Manhã livre (Menton opcional).", afternoon: "Voo para Paris (CDG).", evening: "Pernoite próximo ao aeroporto.", context: "Menton France lemon festival", loc: "Menton" },
+             { day: 16, date: "13/06", title: "Retorno", morning: "Embarque CDG.", afternoon: "Voo Air France (13:20).", evening: "Chegada em Fortaleza (17:35).", context: "Air France plane sky", loc: "Charles de Gaulle Airport" }
+         ];
+         const hotels = {
+             "Paris": [{ name: "Meilá Paris", stars: "4★", dates: "30/05-31/05", price: "R$ 1.452", desc: "Opção da planilha.", img: "Melia Paris Hotel facade" }],
+             "Avignon": [
+                 { name: "La Mirande", stars: "5★", dates: "31/05-03/06", price: "R$ 12.699", desc: "Histórico, luxo supremo.", img: "La Mirande Avignon interior" },
+                 { name: "Hôtel d’Europe", stars: "5★", dates: "31/05-03/06", price: "R$ 6.794", desc: "Clássico e elegante.", img: "Hotel d Europe Avignon courtyard" }
+             ],
+             "Aix-en-Provence": [
+                 { name: "Hôtel Le Pigonnet", stars: "5★", dates: "03/06-05/06", price: "R$ 6.174", desc: "Jardins de Cézanne.", img: "Hotel Le Pigonnet Aix garden" },
+                 { name: "Villa Gallici", stars: "5★", dates: "03/06-05/06", price: "R$ 12.647", desc: "Relais & Châteaux.", img: "Villa Gallici Aix Hotel pool" },
+                 { name: "Renaissance", stars: "4★", dates: "03/06-05/06", price: "R$ 4.971", desc: "Moderno e central.", img: "Renaissance Aix Hotel exterior" }
+             ],
+             "Marseille": [{ name: "InterContinental", stars: "5★", dates: "05/06-07/06", price: "Sob Consulta", desc: "Vista icônica para Notre-Dame.", img: "InterContinental Marseille Hotel Dieu" }],
+             "Nice": [{ name: "Hotel Le Negresco", stars: "5★", dates: "07/06-12/06", price: "Sob Consulta", desc: "O ícone da Riviera Francesa.", img: "Hotel Negresco Nice exterior" }]
+         };
+         const gastronomy = [
+             { title: "Le Jules Verne", loc: "Paris", desc: "Jantar 1★ Michelin na Torre Eiffel.", img: "Jules Verne Restaurant Paris view" },
+             { title: "Le Train Bleu", loc: "Paris", desc: "Almoço em monumento histórico.", img: "Le Train Bleu Restaurant interior" },
+             { title: "Chez Fonfon", loc: "Marseille", desc: "A autêntica Bouillabaisse.", img: "Bouillabaisse Marseille dish" },
+             { title: "La Colombe d'Or", loc: "St-Paul", desc: "Onde Picasso comia.", img: "Colombe d Or Saint Paul de Vence art" },
+             { title: "Le Chantecler", loc: "Nice", desc: "Alta gastronomia no Negresco.", img: "Le Chantecler Restaurant Nice table" },
+             { title: "Le Plongeoir", loc: "Nice", desc: "Jantar sobre o mar.", img: "Le Plongeoir Nice sunset" }
+         ];
+         // ==========================================
+         // 3. APPLICATION LOGIC
+         // ==========================================
+         // TABS
+         const tabs = document.querySelectorAll('.tab-button');
+         const contents = document.querySelectorAll('.tab-content');
+         tabs.forEach(btn => {
+             btn.addEventListener('click', () => {
+                 tabs.forEach(t => t.classList.remove('active'));
+                 contents.forEach(c => c.classList.remove('active'));
+                 btn.classList.add('active');
+                 document.getElementById(btn.dataset.tab).classList.add('active');
+             });
+         });
+         // RENDER: ITINERARY
+         const accContainer = document.getElementById('accordion-container');
+         itinerary.forEach(item => {
+             // Dynamic Image via Pollinations
+             const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(item.context)}%20cinematic%20lighting%204k?width=800&height=400&nologo=true`;
+             accContainer.innerHTML += `
+                 <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden group">
+                     <div class="p-4 flex justify-between items-center cursor-pointer active:bg-slate-50 transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                         <div class="flex items-center gap-4">
+                             <div class="bg-rose-50 text-rose-700 text-xs font-bold px-2 py-1 rounded-lg border border-rose-100 text-center min-w-[55px]">
+                                 ${item.day}<br><span class="text-[9px] text-slate-400 opacity-80 font-normal">${item.date}</span>
+                             </div>
+                             <div>
+                                 <h4 class="font-bold text-slate-800 text-sm md:text-base leading-tight">${item.title}</h4>
+                                 <a href="https://www.google.com/maps/search/?api=1&query=${item.loc}" target="_blank" class="text-[10px] text-blue-500 font-bold flex items-center gap-1 mt-1 hover:text-blue-700 transition-colors" onclick="event.stopPropagation()">
+                                     <i class="fa-solid fa-location-dot"></i> Ver Localização
+                                 </a>
+                             </div>
+                         </div>
+                         <i class="fa-solid fa-chevron-down text-slate-300 text-xs"></i>
+                     </div>
+                     <div class="hidden border-t border-slate-50 bg-slate-50/30">
+                         <div class="h-32 overflow-hidden relative">
+                             <img src="${imgUrl}" loading="lazy" class="w-full h-full object-cover opacity-95">
+                             <div class="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-black/60 to-transparent"></div>
+                         </div>
+                         <div class="p-5 text-sm text-slate-600 space-y-3 leading-relaxed">
+                             <div class="flex gap-2"><span class="text-rose-700 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5">Manhã</span> <span>${item.morning}</span></div>
+                             <div class="flex gap-2"><span class="text-rose-700 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5">Tarde</span> <span>${item.afternoon}</span></div>
+                             <div class="flex gap-2"><span class="text-indigo-900 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5">Noite</span> <span>${item.evening}</span></div>
+                         </div>
+                     </div>
+                 </div>
+             `;
+         });
+         // RENDER: HOTELS
+         const hotelContainer = document.getElementById('hotels-container');
+         const isPollOpen = new Date() <= POLL_DEADLINE;
+         const pollStatus = document.getElementById('poll-status');
+         if (isPollOpen) {
+             pollStatus.textContent = "Votação Ativa até 01/12/2025";
+             pollStatus.className += " bg-emerald-50 text-emerald-700 border border-emerald-100";
+         } else {
+             pollStatus.textContent = "Votação Encerrada";
+             pollStatus.className += " bg-slate-100 text-slate-500 border border-slate-200";
+         }
+         Object.entries(hotels).forEach(([city, options]) => {
+             let optionsHtml = "";
+             options.forEach((h, index) => {
+                 const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(h.img)}?width=800&height=500&nologo=true`;
+                 const voteKey = `vote_${city}_${index}`;
+                 const hasVoted = localStorage.getItem(voteKey) === "1";
+                 optionsHtml += `
+                     <div class="grid grid-cols-1 md:grid-cols-[2fr,3fr] gap-4 bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
+                         <div class="card-zoom h-40 md:h-full">
+                             <img src="${imgUrl}" loading="lazy">
+                         </div>
+                         <div class="p-4 flex flex-col justify-between">
+                             <div>
+                                 <div class="flex items-center justify-between gap-2">
+                                     <div>
+                                         <h4 class="font-bold text-slate-800 text-sm md:text-base">${h.name}</h4>
+                                         <p class="text-[11px] text-amber-500 font-semibold">${h.stars}</p>
+                                     </div>
+                                     <div class="text-right">
+                                         <p class="text-[11px] text-slate-400 uppercase tracking-wide">Período</p>
+                                         <p class="text-xs font-semibold text-slate-700">${h.dates}</p>
+                                     </div>
+                                 </div>
+                                 <p class="text-xs text-slate-500 mt-2">${h.desc}</p>
+                             </div>
+                             <div class="flex items-center justify-between mt-4">
+                                 <div>
+                                     <p class="text-[11px] text-slate-400 uppercase tracking-wide">Estimativa</p>
+                                     <p class="text-sm font-bold text-slate-800">${h.price}</p>
+                                 </div>
+                                 <button
+                                     class="vote-btn px-3 py-2 border border-rose-200 rounded-full text-[10px] font-bold tracking-wide flex items-center gap-1 ${hasVoted ? 'selected' : ''}"
+                                     data-vote-key="${voteKey}"
+                                     ${!isPollOpen || hasVoted ? 'disabled' : ''}
+                                 >
+                                     <i class="fa-solid fa-heart"></i> ${hasVoted ? 'Seu Voto' : 'Votar'}
+                                 </button>
+                             </div>
+                         </div>
+                     </div>
+                 `;
+             });
+             hotelContainer.innerHTML += `
+                 <div class="space-y-4">
+                     <div class="flex items-center gap-2 mb-2">
+                         <div class="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center text-rose-600">
+                             <i class="fa-solid fa-location-dot"></i>
+                         </div>
+                         <div>
+                             <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wide">${city}</h3>
+                             <p class="text-[11px] text-slate-400">Seleção de opções especiais</p>
+                         </div>
+                     </div>
+                     <div class="space-y-3">
+                         ${optionsHtml}
+                     </div>
+                 </div>
+             `;
+         });
+         // Attach voting handlers
+         document.querySelectorAll('.vote-btn').forEach(btn => {
+             btn.addEventListener('click', () => {
+                 const key = btn.getAttribute('data-vote-key');
+                 localStorage.setItem(key, "1");
+                 btn.classList.add('selected');
+                 btn.disabled = true;
+                 btn.innerHTML = '<i class="fa-solid fa-heart"></i> Seu Voto';
+             });
+         });
+         // RENDER: GASTRONOMY
+         const gastronomyGrid = document.getElementById('gastronomy-grid');
+         gastronomy.forEach(item => {
+             const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(item.img)}?width=800&height=500&nologo=true`;
+             gastronomyGrid.innerHTML += `
+                 <div class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm flex flex-col">
+                     <div class="card-zoom h-32">
+                         <img src="${imgUrl}" loading="lazy">
+                     </div>
+                     <div class="p-4 flex-1 flex flex-col justify-between">
+                         <div>
+                             div class="text-[11px] text-slate-400 uppercase tracking-wide mb-1">${item.loc}</div>
+                             <h4 class="font-bold text-sm text-slate-800 mb-1">${item.title}</h4>
+                             <p class="text-xs text-slate-500">${item.desc}</p>
+                         </div>
+                         <div class="mt-3 flex justify-between items-center">
+                             <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.title + ' ' + item.loc)}" target="_blank" class="text-[11px] font-semibold text-blue-500 flex items-center gap-1 hover:text-blue-700">
+                                 <i class="fa-solid fa-location-dot"></i> Ver no mapa
+                             </a>
+                         </div>
+                     </div>
+                 </div>
+             `;
+         });
+         // RENDER: GALLERY (HIGHLIGHTS)
+         const galleryGrid = document.getElementById('gallery-grid');
+         const galleryItems = [
+             "Riviera France coastline aerial view sunset",
+             "Provence lavender fields in bloom sunset",
+             "Nice France promenade des anglais summer",
+             "Saint Paul de Vence village stone streets"
+         ];
+         galleryItems.forEach(prompt => {
+             const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=800&height=600&nologo=true`;
+             galleryGrid.innerHTML += `
+                 <div class="relative rounded-2xl overflow-hidden shadow-sm card-zoom">
+                     <img src="${imgUrl}" loading="lazy" class="w-full h-56 object-cover">
+                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                 </div>
+             `;
+         });
+         // Chart: Theme Focus
+         const ctx = document.getElementById('themeChart').getContext('2d');
+         new Chart(ctx, {
+             type: 'doughnut',
+             data: {
+                 labels: ['Gastronomia', 'Cultura & História', 'Natureza & Paisagens', 'Descanso'],
+                 datasets: [{
+                     data: [30, 30, 25, 15],
+                     backgroundColor: ['#be123c', '#3b82f6', '#10b981', '#f59e0b']
+                 }]
+             },
+             options: {
+                 plugins: {
+                     legend: { display: false }
+                 },
+                 cutout: '65%'
+             }
+         });
+         // AI TOOLS (mocked with front-end logic)
+         // Menu Translator
+         const menuInput = document.getElementById('menuInput');
+         const menuResult = document.getElementById('menuResult');
+         document.getElementById('decodeMenuBtn').addEventListener('click', () => {
+             const value = menuInput.value.trim();
+             if (!value) return;
+             menuResult.classList.remove('hidden');
+             menuResult.innerHTML = `<strong>${value}</strong>: prato típico francês. <br>Explicação detalhada pode ser consultada na IA do Ted.`;
+         });
+         // Packing List Generator
+         const packingResult = document.getElementById('packingResult');
+         document.getElementById('generatePackingBtn').addEventListener('click', () => {
+             packingResult.classList.remove('hidden');
+             packingResult.textContent = `Sugestão de mala para 16 dias (Primavera/Verão na Riviera Francesa):
+             - 6 a 8 camisetas / camisas leves
+             - 3 calças leves / jeans
+             - 2 bermudas / saias
+             - 1 blazer leve ou jaqueta
+             - 1 suéter fino para noites mais frescas
+             - 2 roupas para jantares especiais (smart casual / esporte fino)
+             - 1 traje de banho + saída de praia
+             - 1 tênis confortável para caminhadas
+             - 1 par de sapatos elegantes
+             - 1 sandália confortável
+             - Acessórios: óculos escuros, chapéu, cinto, echarpe
+             - Farmacinha básica e itens de higiene pessoal
+             - Adaptador de tomada (padrão europeu)
+             - Documentos, cartões, cópia de reservas e seguro viagem.`;
+         });
+         // Chat Widget
+         const chatWindow = document.getElementById('chatWindow');
+         const toggleChat = document.getElementById('toggleChat');
+         const closeChat = document.getElementById('closeChat');
+         const chatInput = document.getElementById('chatInput');
+         const chatMessages = document.getElementById('chatMessages');
+         const sendMessageBtn = document.getElementById('sendMessage');
+         toggleChat.addEventListener('click', () => {
+             chatWindow.classList.add('open');
+         });
+         closeChat.addEventListener('click', () => {
+             chatWindow.classList.remove('open');
+         });
+         function addMessage(text, from = 'user') {
+             const bubble = document.createElement('div');
+             bubble.className = `p-3 rounded-2xl shadow-sm border text-xs max-w-[85%] leading-relaxed ${from === 'user'
+                 ? 'bg-rose-600 text-white self-end rounded-tr-none border-rose-500'
+                 : 'bg-white text-slate-600 self-start rounded-tl-none border-slate-100'
+             }`;
+             bubble.textContent = text;
+             chatMessages.appendChild(bubble);
+             chatMessages.scrollTop = chatMessages.scrollHeight;
+         }
+         function addTyping() {
+             const wrapper = document.createElement('div');
+             wrapper.className = "typing-indicator self-start bg-white border border-slate-100 rounded-2xl px-3 py-2 text-xs text-slate-500 flex items-center gap-1";
+             wrapper.innerHTML = `<span></span><span></span><span></span>`;
+             chatMessages.appendChild(wrapper);
+             chatMessages.scrollTop = chatMessages.scrollHeight;
+             return wrapper;
+         }
+         function sendMessage() {
+             const text = chatInput.value.trim();
+             if (!text) return;
+             addMessage(text, 'user');
+             chatInput.value = '';
+             const typing = addTyping();
+             setTimeout(() => {
+                 typing.remove();
+                 addMessage("Mensagem recebida! Esta é uma simulação local. A versão conectada à IA do Ted poderá responder com detalhes sobre roteiros, clima e traduções.", 'bot');
+             }, 1200);
+         }
+         sendMessageBtn.addEventListener('click', sendMessage);
+         chatInput.addEventListener('keydown', (e) => {
+             if (e.key === 'Enter') sendMessage();
+         });
+         // WEATHER HELPER (placeholder)
+         async function fetchWeatherPlaceholder() {
+             return {
+                 summary: "Temperaturas amenas (18º–26ºC), sol com algumas nuvens e baixa chance de chuva.",
+                 recommendation: "Levar camadas leves, um casaco fino para noite e roupa de banho para a Riviera."
+             };
+         }
+         console.log("App Riviera Francesa carregado. Analisando previsão do tempo...");
+     </script>
 </body>
 </html>
