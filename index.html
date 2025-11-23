@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -120,8 +120,8 @@
             <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-xl mb-10 flex items-start gap-4 shadow-sm">
                 <div class="bg-amber-100 p-2 rounded-full text-amber-600"><i class="fa-solid fa-check-to-slot"></i></div>
                 <div>
-                    <h3 class="font-bold text-amber-900 text-sm uppercase tracking-wide mb-1">Votação em Andamento</h3>
-                    <p class="text-xs text-amber-700 leading-relaxed">Ajude a decidir nossa estadia. Acompanhe o totalizador na aba <strong>Hotéis</strong>. Faltam poucos votos!</p>
+                    <h3 class="font-bold text-amber-900 text-sm uppercase tracking-wide mb-1">Votação Aberta</h3>
+                    <p class="text-xs text-amber-700 leading-relaxed">Decisão pendente para: <strong>Avignon, Aix, Marseille e Nice</strong>. Vote na aba Hotéis.</p>
                 </div>
             </div>
 
@@ -132,7 +132,7 @@
                         <div class="relative">
                             <div class="absolute -left-[33px] top-1 w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
                             <h4 class="font-bold text-slate-900 text-sm">Paris</h4>
-                            <p class="text-xs text-slate-500 mt-1">29/05 - 30/05 • Chegada, Montmartre & Gastronomia</p>
+                            <p class="text-xs text-slate-500 mt-1">29/05 - 30/05 • Chegada & TGV</p>
                         </div>
                         <div class="relative">
                             <div class="absolute -left-[33px] top-1 w-5 h-5 bg-purple-600 rounded-full border-4 border-white shadow-sm"></div>
@@ -155,7 +155,7 @@
             </div>
         </section>
 
-        <!-- 2. ROTEIRO (COM IA INTEGRADA) -->
+        <!-- 2. ROTEIRO DETALHADO -->
         <section id="itinerary" class="tab-content">
             <div class="text-center mb-8">
                 <p class="text-xs text-slate-400 uppercase tracking-widest font-bold">Detalhes Dia a Dia</p>
@@ -163,60 +163,55 @@
             <div id="accordion-container" class="space-y-4 max-w-3xl mx-auto"></div>
         </section>
 
-        <!-- 3. GASTRONOMIA -->
+        <!-- 3. GASTRONOMIA & IA -->
         <section id="gastronomy" class="tab-content">
             <div class="bg-white rounded-2xl shadow-lg shadow-rose-100/50 border border-rose-100 p-6 mb-10 relative overflow-hidden">
-                <div class="absolute -right-6 -top-6 w-24 h-24 bg-rose-50 rounded-full opacity-50"></div>
                 <h3 class="text-base font-bold text-slate-800 mb-2 flex items-center gap-2 relative z-10">
                     <i class="fa-solid fa-hat-chef text-rose-500"></i> Chef Sommelier IA
                 </h3>
-                <p class="text-xs text-slate-500 mb-4 relative z-10">Digite o nome de um prato (ex: <em>Cassoulet</em>) para receber uma aula de história, sabor e harmonização.</p>
-                
-                <div id="menuInputContainer" class="flex gap-2 relative z-10">
+                <p class="text-xs text-slate-500 mb-4 relative z-10">Digite o nome de um prato (ex: <em>Cassoulet</em>) para análise profunda.</p>
+                <div class="flex gap-2 relative z-10">
                     <input type="text" id="menuInput" placeholder="Prato francês..." class="flex-1 px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 transition-shadow">
                     <button id="decodeMenuBtn" class="bg-rose-600 text-white px-5 py-3 rounded-xl font-bold text-sm hover:bg-rose-700 transition-colors shadow-md shadow-rose-200">Consultar</button>
                 </div>
-                
                 <div id="menuResult" class="mt-4 hidden text-sm bg-slate-50 p-4 rounded-xl text-slate-700 border border-slate-100 shadow-inner leading-relaxed"></div>
-                <button id="clearMenuBtn" class="mt-3 text-xs text-rose-500 font-bold underline hidden relative z-10">Nova Consulta</button>
+                <button id="clearMenuBtn" class="mt-2 text-xs text-rose-500 font-bold underline hidden relative z-10 cursor-pointer">Nova Pesquisa</button>
             </div>
             <div id="gastronomy-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
         </section>
 
-        <!-- 4. HOTÉIS (TOTALIZADOR) -->
+        <!-- 4. HOTÉIS (VOTAÇÃO) -->
         <section id="hotels" class="tab-content">
             <div class="flex flex-col md:flex-row justify-between items-end mb-8 px-2">
-                <div>
+                <div class="mb-4 md:mb-0">
                     <h2 class="text-2xl font-bold text-slate-900 serif-font">Hotelaria</h2>
-                    <p class="text-xs text-slate-500 mt-1">Cotação baseada na planilha oficial.</p>
+                    <p class="text-xs text-slate-500 mt-1">Cotação oficial.</p>
                 </div>
-                <div class="mt-4 md:mt-0 flex items-center gap-3 bg-white p-2 rounded-lg border border-slate-200 shadow-sm">
-                    <div id="poll-status" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide"></div>
+                <div class="flex items-center gap-3 bg-white p-2 rounded-lg border border-slate-200 shadow-sm">
+                    <div id="poll-status" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide shadow-sm"></div>
                     <div class="text-xs font-bold text-slate-600 pr-2 border-l border-slate-200 pl-3">
-                        <i class="fa-solid fa-users text-blue-500"></i> 14/16 Votos Computados
+                        <i class="fa-solid fa-users text-blue-500"></i> 12/16 Votos Computados
                     </div>
                 </div>
             </div>
             <div id="hotels-container" class="space-y-12"></div>
         </section>
 
-        <!-- 5. LOGÍSTICA -->
+        <!-- 5. LOGÍSTICA & IA -->
         <section id="logistics" class="tab-content">
             <div class="bg-slate-800 rounded-2xl p-6 mb-8 text-white shadow-xl relative overflow-hidden">
                 <h3 class="text-base font-bold mb-2 flex items-center gap-2 relative z-10">
                     <i class="fa-solid fa-shirt text-blue-300"></i> Personal Stylist IA
                 </h3>
-                <p class="text-xs text-slate-300 mb-3 relative z-10">Descreva seu perfil (ex: "Mulher, sinto frio, gosto de saltos mas vou andar muito") para uma mala sob medida.</p>
-                
-                <div id="packingInputContainer" class="flex flex-col gap-3 relative z-10">
-                    <input type="text" id="packingProfile" placeholder="Descreva seu perfil e preferências aqui..." class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-800 focus:outline-none shadow-inner">
+                <p class="text-xs text-slate-300 mb-3 relative z-10">Descreva seu perfil para uma mala sob medida.</p>
+                <div class="flex flex-col gap-3 relative z-10">
+                    <input type="text" id="packingProfile" placeholder="Ex: Mulher, friorenta, gosto de saltos..." class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-800 focus:outline-none shadow-inner">
                     <button id="generatePackingBtn" class="w-full py-3 bg-white/10 hover:bg-white/20 rounded-xl font-bold text-sm transition-all border border-white/10 flex items-center justify-center gap-2 backdrop-blur-sm">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> Gerar Mala Inteligente
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Gerar Mala
                     </button>
                 </div>
-                
                 <div id="packingResult" class="mt-5 hidden text-xs text-slate-200 bg-black/20 p-5 rounded-xl leading-relaxed whitespace-pre-line border border-white/5"></div>
-                <button id="clearPackingBtn" class="mt-3 text-xs text-blue-300 font-bold underline hidden relative z-10">Nova Lista</button>
+                <button id="clearPackingBtn" class="mt-3 text-xs text-blue-300 font-bold underline hidden relative z-10 cursor-pointer">Nova Lista</button>
             </div>
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
                 <h3 class="font-bold text-slate-700 text-sm mb-4 ml-1"><i class="fa-solid fa-map text-slate-400 mr-2"></i>Mapa da Região</h3>
@@ -241,7 +236,7 @@
         </div>
         <div class="flex-1 p-4 overflow-y-auto bg-slate-50 flex flex-col gap-3" id="chatMessages">
             <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-xs self-start max-w-[85%] text-slate-600 leading-relaxed">
-                Bonjour! Sou seu assistente virtual 24h. Pergunte sobre o clima, história local ou etiqueta francesa.
+                Bonjour! Sou seu assistente virtual. Posso ajudar com detalhes do roteiro, previsão do tempo, ou traduzir frases para francês.
             </div>
         </div>
         <div class="p-3 bg-white border-t border-slate-100 flex gap-2 rounded-b-3xl">
@@ -252,11 +247,11 @@
     <div class="chat-btn" id="toggleChat"><i class="fa-regular fa-comment-dots"></i></div>
 
     <script>
-        // 1. CONFIGURAÇÃO
-        const API_KEY = "AIzaSyCB2zNVCasr1B3FAJAMvJ4GuXtbeFZsmz8"; 
+        // 1. CONFIGURAÇÃO (NOVA CHAVE)
+        const API_KEY = "AIzaSyC-SGcf7nu_tb54AbJ8eo6_qfKRvI8o6sQ"; 
         const POLL_DEADLINE = new Date('2025-12-01T23:59:59');
 
-        // 2. DADOS
+        // 2. DADOS (Completos do Word e Planilha)
         const itinerary = [
             { 
                 day: 1, date: "29/05", title: "Paris: Chegada, Montmartre & Torre Eiffel", 
@@ -317,7 +312,7 @@
             { 
                 day: 9, date: "06/06", title: "Marseille → Nice (Via St-Tropez)", 
                 morning: "Parada no glamour de <strong>Saint-Tropez</strong>: Passeio pelo porto, café no Sénéquier e visita à Citadelle.", 
-                afternoon: "Prova da famosa <em>Tarte Tropézienne</em>. Viagem pela estrada costeira até Nice. Check-in no icônico <strong>Hotel Le Negresco</strong>.", 
+                afternoon: "Prova da famosa <em>Tarte Tropézienne</em>. Viagem pela estrada costeira até Nice. Check-in no hotel escolhido.", 
                 evening: "Caminhada na Promenade des Anglais e jantar no <strong>Le Chantecler</strong> (dentro do Negresco).", 
                 context: "Saint Tropez harbor luxury yachts summer", loc: "Saint-Tropez" 
             },
@@ -372,6 +367,7 @@
             }
         ];
 
+        // Hotéis - Votação em 4 Cidades (Dados Atualizados)
         const hotels = {
             "Paris": [{ name: "Meilá Paris", stars: "4★", dates: "30/05-31/05", price: "R$ 1.452", desc: "Localização estratégica.", img: "Melia Paris Hotel facade" }],
             "Avignon": [
@@ -402,7 +398,7 @@
             { title: "Le Plongeoir", loc: "Nice", desc: "Jantar sobre o mar.", img: "Le Plongeoir Nice sunset" }
         ];
 
-        // 3. LÓGICA
+        // 3. LÓGICA DO APP
         const tabs = document.querySelectorAll('.tab-button');
         const contents = document.querySelectorAll('.tab-content');
         tabs.forEach(btn => {
@@ -414,7 +410,7 @@
             });
         });
 
-        // RENDER
+        // RENDER ITINERARY
         const accContainer = document.getElementById('accordion-container');
         itinerary.forEach((item, index) => {
             const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(item.context)}%20cinematic%20lighting%204k?width=800&height=400&nologo=true`;
@@ -444,7 +440,6 @@
                             <div class="flex gap-2"><span class="text-rose-700 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5">Tarde</span> <span>${item.afternoon}</span></div>
                             <div class="flex gap-2"><span class="text-indigo-900 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5">Noite</span> <span>${item.evening}</span></div>
                             
-                            <!-- NOVO: GUIA DO LOCAL IA -->
                             <div class="mt-4 border-t border-slate-100 pt-3">
                                 <div class="flex gap-2">
                                     <input type="text" id="guideInput-${index}" placeholder="Dúvidas sobre este dia?" class="flex-1 px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-rose-500">
@@ -458,28 +453,29 @@
             `;
         });
 
-        // Function for Itinerary Guide
         window.askGuide = async (index, loc, context) => {
             const input = document.getElementById(`guideInput-${index}`);
             const resultDiv = document.getElementById(`guideResult-${index}`);
             const question = input.value;
-            
             if (!question) return;
             
             resultDiv.classList.remove('hidden');
             resultDiv.innerHTML = "<div class='typing-indicator'><span></span><span></span><span></span></div> <span class='text-xs text-slate-400'>Consultando guia local...</span>";
             
             const prompt = `Você é um guia turístico local especializado em ${loc}. O turista pergunta: "${question}" sobre o dia "${context}". Responda de forma curta, útil e interessante em Português.`;
-            
             const response = await callGemini(prompt);
+            
             resultDiv.innerHTML = `<strong class="text-rose-600">Guia Local:</strong> ${response}`;
         };
 
         const hotelContainer = document.getElementById('hotels-container');
         const isPollOpen = new Date() <= POLL_DEADLINE;
+        
         const pollStatus = document.getElementById('poll-status');
-        pollStatus.textContent = isPollOpen ? "Votação Aberta" : "Encerrada";
-        pollStatus.className = isPollOpen ? "px-3 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-bold uppercase tracking-wider" : "px-3 py-1 bg-red-100 text-red-700 rounded-full text-[10px] font-bold uppercase tracking-wider";
+        if (pollStatus) {
+            pollStatus.textContent = isPollOpen ? "Votação Aberta" : "Encerrada";
+            pollStatus.className = isPollOpen ? "px-3 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-bold uppercase tracking-wider" : "px-3 py-1 bg-red-100 text-red-700 rounded-full text-[10px] font-bold uppercase tracking-wider";
+        }
 
         for (const [city, list] of Object.entries(hotels)) {
             const isPoll = list.length > 1;
@@ -497,7 +493,6 @@
                 const isSelected = savedVote === h.name;
                 const imgUrl = `https://image.pollinations.ai/prompt/luxury hotel ${h.img} interior professional photo?width=500&height=350&nologo=true`;
                 
-                // Simulador de Votos (Totalizador)
                 const fakeVotes = (h.name.length * 3) % 20 + 5 + (isSelected ? 1 : 0); 
                 const totalCityVotes = 60;
                 const percentage = Math.min(100, (fakeVotes / totalCityVotes) * 100);
@@ -600,7 +595,7 @@
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { boxWidth: 8, font: { size: 10, family: "'Lato', sans-serif" } } } }, layout: { padding: 10 } }
         });
 
-        // 4. INTEGRAÇÃO IA (GEMINI)
+        // 4. INTEGRAÇÃO IA (GEMINI) - COM PERSISTÊNCIA
         async function callGemini(prompt) {
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`, {
@@ -608,22 +603,23 @@
                     body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
                 });
                 const data = await response.json();
-                return data.candidates?.[0]?.content?.parts?.[0]?.text || "Erro na IA.";
-            } catch (e) { return "Erro de conexão."; }
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "Erro na IA. Tente novamente.";
+            } catch (e) { return "Erro de conexão. Verifique sua internet."; }
         }
 
         // Restaurar Estado ao Carregar
         const savedMenu = localStorage.getItem('menu_result');
         if (savedMenu) {
-            document.getElementById('menuResult').innerHTML = savedMenu;
-            document.getElementById('menuResult').classList.remove('hidden');
-            document.getElementById('clearMenuBtn').classList.remove('hidden');
+            const el = document.getElementById('menuResult');
+            if(el) { el.innerHTML = savedMenu; el.classList.remove('hidden'); }
+            const btn = document.getElementById('clearMenuBtn');
+            if(btn) btn.classList.remove('hidden');
         }
 
         const savedPacking = localStorage.getItem('packing_result');
         if (savedPacking) {
-            document.getElementById('packingResult').innerHTML = savedPacking;
-            document.getElementById('packingResult').classList.remove('hidden');
+            const el = document.getElementById('packingResult');
+            if(el) { el.innerHTML = savedPacking; el.classList.remove('hidden'); }
             document.getElementById('packingInputContainer').classList.add('hidden');
             document.getElementById('clearPackingBtn').classList.remove('hidden');
         }
