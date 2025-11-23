@@ -14,8 +14,8 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
         
-        /* Design System */
-        body { font-family: 'Lato', sans-serif; background-color: #f8fafc; color: #1e293b; padding-bottom: 100px; }
+        /* Base */
+        body { font-family: 'Lato', sans-serif; background-color: #f8fafc; color: #1e293b; padding-bottom: 100px; -webkit-font-smoothing: antialiased; }
         h1, h2, h3, h4, .serif-font { font-family: 'Playfair Display', serif; }
         
         /* Mobile Nav */
@@ -29,9 +29,10 @@
         }
         .tab-button.active { color: #be123c; border-bottom-color: #be123c; background-color: #fff1f2; }
         
-        .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
+        /* Animations */
+        .tab-content { display: none; animation: fadeIn 0.3s ease-out; }
         .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Cards */
         .card-zoom { overflow: hidden; }
@@ -62,7 +63,7 @@
 
         /* AI Loader */
         .typing-indicator span {
-            display: inline-block; width: 6px; height: 6px; background-color: #be123c; border-radius: 50%;
+            display: inline-block; width: 5px; height: 5px; background-color: #be123c; border-radius: 50%;
             animation: typing 1.4s infinite ease-in-out both; margin: 0 2px;
         }
         .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
@@ -120,7 +121,7 @@
                 <div class="bg-amber-100 p-2 rounded-full text-amber-600"><i class="fa-solid fa-check-to-slot"></i></div>
                 <div>
                     <h3 class="font-bold text-amber-900 text-sm uppercase tracking-wide mb-1">Votação em Andamento</h3>
-                    <p class="text-xs text-amber-700 leading-relaxed">Vote nas opções de <strong>Avignon</strong>, <strong>Aix</strong>, <strong>Marseille</strong> e <strong>Nice</strong>. Acompanhe o totalizador na aba <strong>Hotéis</strong>.</p>
+                    <p class="text-xs text-amber-700 leading-relaxed">Ajude a decidir nossa estadia. Acompanhe o totalizador na aba <strong>Hotéis</strong>. Faltam poucos votos!</p>
                 </div>
             </div>
 
@@ -131,17 +132,17 @@
                         <div class="relative">
                             <div class="absolute -left-[33px] top-1 w-5 h-5 bg-blue-600 rounded-full border-4 border-white shadow-sm"></div>
                             <h4 class="font-bold text-slate-900 text-sm">Paris</h4>
-                            <p class="text-xs text-slate-500 mt-1">29/05 - 30/05 • Chegada & TGV</p>
+                            <p class="text-xs text-slate-500 mt-1">29/05 - 30/05 • Chegada, Montmartre & Gastronomia</p>
                         </div>
                         <div class="relative">
                             <div class="absolute -left-[33px] top-1 w-5 h-5 bg-purple-600 rounded-full border-4 border-white shadow-sm"></div>
                             <h4 class="font-bold text-slate-900 text-sm">Provence</h4>
-                            <p class="text-xs text-slate-500 mt-1">30/05 - 06/06 • Avignon, Aix, Marseille</p>
+                            <p class="text-xs text-slate-500 mt-1">30/05 - 06/06 • Avignon, Aix, Lavanda & Vinhos</p>
                         </div>
                         <div class="relative">
                             <div class="absolute -left-[33px] top-1 w-5 h-5 bg-teal-500 rounded-full border-4 border-white shadow-sm"></div>
                             <h4 class="font-bold text-slate-900 text-sm">Riviera & Nice</h4>
-                            <p class="text-xs text-slate-500 mt-1">06/06 - 13/06 • Costa Azul & Retorno</p>
+                            <p class="text-xs text-slate-500 mt-1">06/06 - 13/06 • Costa Azul, Mônaco & Retorno</p>
                         </div>
                     </div>
                 </div>
@@ -154,7 +155,7 @@
             </div>
         </section>
 
-        <!-- 2. ROTEIRO -->
+        <!-- 2. ROTEIRO (COM IA INTEGRADA) -->
         <section id="itinerary" class="tab-content">
             <div class="text-center mb-8">
                 <p class="text-xs text-slate-400 uppercase tracking-widest font-bold">Detalhes Dia a Dia</p>
@@ -165,27 +166,36 @@
         <!-- 3. GASTRONOMIA -->
         <section id="gastronomy" class="tab-content">
             <div class="bg-white rounded-2xl shadow-lg shadow-rose-100/50 border border-rose-100 p-6 mb-10 relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 w-24 h-24 bg-rose-50 rounded-full opacity-50"></div>
                 <h3 class="text-base font-bold text-slate-800 mb-2 flex items-center gap-2 relative z-10">
                     <i class="fa-solid fa-hat-chef text-rose-500"></i> Chef Sommelier IA
                 </h3>
-                <p class="text-xs text-slate-500 mb-4 relative z-10">Digite o nome de um prato (ex: <em>Cassoulet</em>) para análise profunda.</p>
-                <div class="flex gap-2 relative z-10">
+                <p class="text-xs text-slate-500 mb-4 relative z-10">Digite o nome de um prato (ex: <em>Cassoulet</em>) para receber uma aula de história, sabor e harmonização.</p>
+                
+                <div id="menuInputContainer" class="flex gap-2 relative z-10">
                     <input type="text" id="menuInput" placeholder="Prato francês..." class="flex-1 px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 transition-shadow">
                     <button id="decodeMenuBtn" class="bg-rose-600 text-white px-5 py-3 rounded-xl font-bold text-sm hover:bg-rose-700 transition-colors shadow-md shadow-rose-200">Consultar</button>
                 </div>
+                
                 <div id="menuResult" class="mt-4 hidden text-sm bg-slate-50 p-4 rounded-xl text-slate-700 border border-slate-100 shadow-inner leading-relaxed"></div>
+                <button id="clearMenuBtn" class="mt-3 text-xs text-rose-500 font-bold underline hidden relative z-10">Nova Consulta</button>
             </div>
             <div id="gastronomy-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
         </section>
 
-        <!-- 4. HOTÉIS -->
+        <!-- 4. HOTÉIS (TOTALIZADOR) -->
         <section id="hotels" class="tab-content">
-            <div class="flex justify-between items-end mb-8 px-2">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-8 px-2">
                 <div>
                     <h2 class="text-2xl font-bold text-slate-900 serif-font">Hotelaria</h2>
-                    <p class="text-xs text-slate-500 mt-1">Cotação oficial e Votação ativa.</p>
+                    <p class="text-xs text-slate-500 mt-1">Cotação baseada na planilha oficial.</p>
                 </div>
-                <div id="poll-status" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide shadow-sm"></div>
+                <div class="mt-4 md:mt-0 flex items-center gap-3 bg-white p-2 rounded-lg border border-slate-200 shadow-sm">
+                    <div id="poll-status" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide"></div>
+                    <div class="text-xs font-bold text-slate-600 pr-2 border-l border-slate-200 pl-3">
+                        <i class="fa-solid fa-users text-blue-500"></i> 14/16 Votos Computados
+                    </div>
+                </div>
             </div>
             <div id="hotels-container" class="space-y-12"></div>
         </section>
@@ -196,14 +206,17 @@
                 <h3 class="text-base font-bold mb-2 flex items-center gap-2 relative z-10">
                     <i class="fa-solid fa-shirt text-blue-300"></i> Personal Stylist IA
                 </h3>
-                <p class="text-xs text-slate-300 mb-3 relative z-10">Descreva seu perfil para uma mala sob medida.</p>
-                <div class="flex flex-col gap-3 relative z-10">
-                    <input type="text" id="packingProfile" placeholder="Ex: Mulher, friorenta, gosto de saltos..." class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-800 focus:outline-none">
+                <p class="text-xs text-slate-300 mb-3 relative z-10">Descreva seu perfil (ex: "Mulher, sinto frio, gosto de saltos mas vou andar muito") para uma mala sob medida.</p>
+                
+                <div id="packingInputContainer" class="flex flex-col gap-3 relative z-10">
+                    <input type="text" id="packingProfile" placeholder="Descreva seu perfil e preferências aqui..." class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-800 focus:outline-none shadow-inner">
                     <button id="generatePackingBtn" class="w-full py-3 bg-white/10 hover:bg-white/20 rounded-xl font-bold text-sm transition-all border border-white/10 flex items-center justify-center gap-2 backdrop-blur-sm">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> Gerar Mala
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Gerar Mala Inteligente
                     </button>
                 </div>
+                
                 <div id="packingResult" class="mt-5 hidden text-xs text-slate-200 bg-black/20 p-5 rounded-xl leading-relaxed whitespace-pre-line border border-white/5"></div>
+                <button id="clearPackingBtn" class="mt-3 text-xs text-blue-300 font-bold underline hidden relative z-10">Nova Lista</button>
             </div>
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
                 <h3 class="font-bold text-slate-700 text-sm mb-4 ml-1"><i class="fa-solid fa-map text-slate-400 mr-2"></i>Mapa da Região</h3>
@@ -228,7 +241,7 @@
         </div>
         <div class="flex-1 p-4 overflow-y-auto bg-slate-50 flex flex-col gap-3" id="chatMessages">
             <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-xs self-start max-w-[85%] text-slate-600 leading-relaxed">
-                Bonjour! Sou seu assistente virtual. Posso ajudar com detalhes do roteiro, previsão do tempo, ou traduzir frases para francês.
+                Bonjour! Sou seu assistente virtual 24h. Pergunte sobre o clima, história local ou etiqueta francesa.
             </div>
         </div>
         <div class="p-3 bg-white border-t border-slate-100 flex gap-2 rounded-b-3xl">
@@ -243,7 +256,7 @@
         const API_KEY = "AIzaSyCB2zNVCasr1B3FAJAMvJ4GuXtbeFZsmz8"; 
         const POLL_DEADLINE = new Date('2025-12-01T23:59:59');
 
-        // 2. DADOS (Completos do Word e Planilha)
+        // 2. DADOS
         const itinerary = [
             { 
                 day: 1, date: "29/05", title: "Paris: Chegada, Montmartre & Torre Eiffel", 
@@ -359,7 +372,6 @@
             }
         ];
 
-        // Hotéis - ATUALIZADO PARA INCLUIR MÚLTIPLAS OPÇÕES EM MARSEILLE E NICE
         const hotels = {
             "Paris": [{ name: "Meilá Paris", stars: "4★", dates: "30/05-31/05", price: "R$ 1.452", desc: "Localização estratégica.", img: "Melia Paris Hotel facade" }],
             "Avignon": [
@@ -404,7 +416,7 @@
 
         // RENDER
         const accContainer = document.getElementById('accordion-container');
-        itinerary.forEach(item => {
+        itinerary.forEach((item, index) => {
             const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(item.context)}%20cinematic%20lighting%204k?width=800&height=400&nologo=true`;
             accContainer.innerHTML += `
                 <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden group">
@@ -431,11 +443,37 @@
                             <div class="flex gap-2"><span class="text-rose-700 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5">Manhã</span> <span>${item.morning}</span></div>
                             <div class="flex gap-2"><span class="text-rose-700 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5">Tarde</span> <span>${item.afternoon}</span></div>
                             <div class="flex gap-2"><span class="text-indigo-900 font-bold text-[10px] uppercase w-12 shrink-0 pt-0.5">Noite</span> <span>${item.evening}</span></div>
+                            
+                            <!-- NOVO: GUIA DO LOCAL IA -->
+                            <div class="mt-4 border-t border-slate-100 pt-3">
+                                <div class="flex gap-2">
+                                    <input type="text" id="guideInput-${index}" placeholder="Dúvidas sobre este dia?" class="flex-1 px-3 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-rose-500">
+                                    <button onclick="askGuide(${index}, '${item.loc}', '${item.title}')" class="bg-slate-800 text-white px-3 py-2 rounded-lg text-xs hover:bg-slate-700"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                                </div>
+                                <div id="guideResult-${index}" class="mt-2 hidden text-xs text-slate-700 bg-white p-3 rounded-lg border border-slate-100 shadow-sm leading-relaxed"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
         });
+
+        // Function for Itinerary Guide
+        window.askGuide = async (index, loc, context) => {
+            const input = document.getElementById(`guideInput-${index}`);
+            const resultDiv = document.getElementById(`guideResult-${index}`);
+            const question = input.value;
+            
+            if (!question) return;
+            
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = "<div class='typing-indicator'><span></span><span></span><span></span></div> <span class='text-xs text-slate-400'>Consultando guia local...</span>";
+            
+            const prompt = `Você é um guia turístico local especializado em ${loc}. O turista pergunta: "${question}" sobre o dia "${context}". Responda de forma curta, útil e interessante em Português.`;
+            
+            const response = await callGemini(prompt);
+            resultDiv.innerHTML = `<strong class="text-rose-600">Guia Local:</strong> ${response}`;
+        };
 
         const hotelContainer = document.getElementById('hotels-container');
         const isPollOpen = new Date() <= POLL_DEADLINE;
@@ -562,7 +600,7 @@
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { boxWidth: 8, font: { size: 10, family: "'Lato', sans-serif" } } } }, layout: { padding: 10 } }
         });
 
-        // 4. INTEGRAÇÃO IA (GEMINI) APROFUNDADA
+        // 4. INTEGRAÇÃO IA (GEMINI)
         async function callGemini(prompt) {
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${API_KEY}`, {
@@ -572,6 +610,22 @@
                 const data = await response.json();
                 return data.candidates?.[0]?.content?.parts?.[0]?.text || "Erro na IA.";
             } catch (e) { return "Erro de conexão."; }
+        }
+
+        // Restaurar Estado ao Carregar
+        const savedMenu = localStorage.getItem('menu_result');
+        if (savedMenu) {
+            document.getElementById('menuResult').innerHTML = savedMenu;
+            document.getElementById('menuResult').classList.remove('hidden');
+            document.getElementById('clearMenuBtn').classList.remove('hidden');
+        }
+
+        const savedPacking = localStorage.getItem('packing_result');
+        if (savedPacking) {
+            document.getElementById('packingResult').innerHTML = savedPacking;
+            document.getElementById('packingResult').classList.remove('hidden');
+            document.getElementById('packingInputContainer').classList.add('hidden');
+            document.getElementById('clearPackingBtn').classList.remove('hidden');
         }
 
         const chatInput = document.getElementById('chatInput');
@@ -604,7 +658,7 @@
         document.getElementById('toggleChat').onclick = () => document.getElementById('chatWindow').classList.toggle('open');
         document.getElementById('closeChat').onclick = () => document.getElementById('chatWindow').classList.remove('open');
 
-        // IA Gastronomia Profunda (Corrigido)
+        // IA Gastronomia (Com Persistência)
         document.getElementById('decodeMenuBtn').onclick = async () => {
             const dish = document.getElementById('menuInput').value;
             if(!dish) return;
@@ -612,14 +666,26 @@
             res.classList.remove('hidden');
             res.innerHTML = "<div class='typing-indicator'><span></span><span></span><span></span></div> <span class='text-xs text-slate-400'>O Chef está pesquisando...</span>";
             
-            // Prompt ajustado para agir como Sommelier/Chef
             const prompt = `Aja como um chef francês renomado e sommelier. Explique o prato "${dish}" com profundidade e elegância: 1) Breve origem histórica, 2) Ingredientes principais, 3) Perfil de sabor, 4) Sugestão de vinho para harmonizar. Formate com quebras de linha.`;
             
             const response = await callGemini(prompt);
-            res.innerHTML = response.replace(/\n/g, '<br>');
+            const formatted = response.replace(/\n/g, '<br>');
+            res.innerHTML = formatted;
+            
+            // Salvar Estado
+            localStorage.setItem('menu_result', formatted);
+            document.getElementById('clearMenuBtn').classList.remove('hidden');
         };
 
-        // IA Logística Personalizada (Corrigido)
+        document.getElementById('clearMenuBtn').onclick = () => {
+            localStorage.removeItem('menu_result');
+            document.getElementById('menuResult').classList.add('hidden');
+            document.getElementById('menuResult').innerHTML = '';
+            document.getElementById('clearMenuBtn').classList.add('hidden');
+            document.getElementById('menuInput').value = '';
+        };
+
+        // IA Logística (Com Persistência)
         document.getElementById('generatePackingBtn').onclick = async () => {
             const profile = document.getElementById('packingProfile').value;
             if(!profile) { alert("Por favor, descreva seu perfil."); return; }
@@ -628,11 +694,25 @@
             res.classList.remove('hidden');
             res.innerHTML = "<div class='typing-indicator'><span></span><span></span><span></span></div> <span class='text-xs text-slate-400'>Personal Stylist trabalhando...</span>";
             
-            // Prompt usa o input específico do usuário
             const prompt = `Atue como um Personal Stylist de viagem de luxo. Crie uma lista de mala compacta e inteligente para 16 dias na França em Junho (Paris + Provence + Riviera). O perfil do viajante é: "${profile}". Inclua itens essenciais de vestuário, calçados e acessórios, focando em versatilidade e elegância. Use emojis e bullet points.`;
             
             const response = await callGemini(prompt);
-            res.innerHTML = response.replace(/\n/g, '<br>');
+            const formatted = response.replace(/\n/g, '<br>');
+            res.innerHTML = formatted;
+
+            // Salvar Estado
+            localStorage.setItem('packing_result', formatted);
+            document.getElementById('packingInputContainer').classList.add('hidden');
+            document.getElementById('clearPackingBtn').classList.remove('hidden');
+        };
+
+        document.getElementById('clearPackingBtn').onclick = () => {
+            localStorage.removeItem('packing_result');
+            document.getElementById('packingResult').classList.add('hidden');
+            document.getElementById('packingResult').innerHTML = '';
+            document.getElementById('packingInputContainer').classList.remove('hidden');
+            document.getElementById('clearPackingBtn').classList.add('hidden');
+            document.getElementById('packingProfile').value = '';
         };
     </script>
 </body>
