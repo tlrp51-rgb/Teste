@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#be123c">
+    
+    <!-- Configuração para Web App (iOS/Android) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Riviera 2026">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/color/100/france.png">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/96/france.png">
+
     <title>Riviera Francesa - Nossa Experiência</title>
     
     <!-- Frameworks -->
@@ -14,10 +22,12 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
         
-        body { font-family: 'Lato', sans-serif; background-color: #f8fafc; color: #1e293b; padding-bottom: 100px; -webkit-font-smoothing: antialiased; }
+        /* Base */
+        body { font-family: 'Lato', sans-serif; background-color: #f8fafc; color: #1e293b; padding-bottom: 100px; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
         h1, h2, h3, h4, .serif-font { font-family: 'Playfair Display', serif; }
         
-        .nav-scroll { -ms-overflow-style: none; scrollbar-width: none; white-space: nowrap; overflow-x: auto; }
+        /* Mobile Nav */
+        .nav-scroll { -ms-overflow-style: none; scrollbar-width: none; white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .nav-scroll::-webkit-scrollbar { display: none; }
         
         .tab-button {
@@ -27,18 +37,23 @@
         }
         .tab-button.active { color: #be123c; border-bottom-color: #be123c; background-color: #fff1f2; }
         
+        /* Animations */
         .tab-content { display: none; animation: fadeIn 0.3s ease-out; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Cards */
         .card-zoom { overflow: hidden; }
         .card-zoom img { transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); width: 100%; height: 100%; object-fit: cover; }
         .card-zoom:hover img { transform: scale(1.08); }
         
-        .vote-bar { transition: width 1.5s ease-in-out; }
+        /* Components */
+        .vote-btn { transition: all 0.2s; letter-spacing: 0.025em; text-transform: uppercase; font-size: 0.7rem; }
         .vote-btn.selected { background-color: #10b981; border-color: #10b981; color: white; cursor: default; pointer-events: none; }
         .vote-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .vote-bar { transition: width 1.5s ease-in-out; }
 
+        /* Chat Widget */
         .chat-window { 
             position: fixed; bottom: 90px; right: 20px; width: 90vw; max-width: 360px; height: 550px; max-height: 70vh;
             background: white; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); 
@@ -55,6 +70,14 @@
         }
         .chat-btn:hover { transform: scale(1.1); }
 
+        /* Install Modal */
+        .install-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 6000;
+            display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .install-modal.open { opacity: 1; pointer-events: all; }
+
+        /* AI Loader */
         .typing-indicator span {
             display: inline-block; width: 5px; height: 5px; background-color: #be123c; border-radius: 50%;
             animation: typing 1.4s infinite ease-in-out both; margin: 0 2px;
@@ -66,12 +89,17 @@
 </head>
 <body>
 
+    <!-- Header -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm/50">
-        <div class="container mx-auto px-4 py-5 text-center">
-            <div class="inline-block bg-rose-50 border border-rose-100 px-3 py-1 rounded-full mb-2">
+        <div class="container mx-auto px-4 py-4 text-center relative">
+            <button id="installAppBtn" class="absolute right-4 top-4 text-xs font-bold text-blue-600 border border-blue-100 bg-blue-50 px-3 py-1 rounded-full flex items-center gap-1 hover:bg-blue-100 transition-colors">
+                <i class="fa-solid fa-download"></i> Instalar App
+            </button>
+
+            <div class="inline-block bg-rose-50 border border-rose-100 px-3 py-1 rounded-full mb-2 mt-6 md:mt-0">
                 <p class="text-[10px] font-bold text-rose-600 uppercase tracking-widest">29 Maio – 13 Junho 2026</p>
             </div>
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 serif-font tracking-tight">Riviera Francesa</h1>
+            <h1 class="text-2xl md:text-4xl font-bold text-slate-900 serif-font tracking-tight">Riviera Francesa</h1>
             <p class="text-sm text-slate-500 font-light italic mt-1">Experiência Exclusiva para 8 Viajantes</p>
         </div>
         
@@ -89,7 +117,7 @@
 
     <main class="container mx-auto px-4 py-8 max-w-5xl">
 
-        <!-- 1. OVERVIEW -->
+        <!-- 1. VISÃO GERAL -->
         <section id="overview" class="tab-content active">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center">
@@ -101,12 +129,12 @@
                     <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1">Bases</div>
                 </div>
                 <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center">
-                    <div class="text-3xl font-bold text-rose-700 serif-font">3</div>
-                    <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1">Regiões</div>
-                </div>
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center">
                     <div class="text-3xl font-bold text-rose-700 serif-font">8</div>
                     <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1">Viajantes</div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center">
+                    <div class="text-3xl font-bold text-rose-700 serif-font">∞</div>
+                    <div class="text-[10px] uppercase tracking-wider text-slate-400 font-bold mt-1">Memórias</div>
                 </div>
             </div>
 
@@ -114,7 +142,7 @@
                 <div class="bg-amber-100 p-2 rounded-full text-amber-600"><i class="fa-solid fa-check-to-slot"></i></div>
                 <div>
                     <h3 class="font-bold text-amber-900 text-sm uppercase tracking-wide mb-1">Votação Aberta</h3>
-                    <p class="text-xs text-amber-700 leading-relaxed">Sua opinião é fundamental. Vote nos hotéis de <strong>Avignon, Aix, Marseille e Nice</strong>. Cada voto enviará um e-mail automático.</p>
+                    <p class="text-xs text-amber-700 leading-relaxed">Vote nos hotéis de <strong>Avignon, Aix, Marseille e Nice</strong>. Cada voto enviará uma notificação por e-mail.</p>
                 </div>
             </div>
 
@@ -130,7 +158,7 @@
                         <div class="relative">
                             <div class="absolute -left-[33px] top-1 w-5 h-5 bg-purple-600 rounded-full border-4 border-white shadow-sm"></div>
                             <h4 class="font-bold text-slate-900 text-sm">Provence</h4>
-                            <p class="text-xs text-slate-500 mt-1">30/05 - 06/06 • Avignon, Aix, Lavanda</p>
+                            <p class="text-xs text-slate-500 mt-1">30/05 - 06/06 • Avignon, Aix, Lavanda & Vinhos</p>
                         </div>
                         <div class="relative">
                             <div class="absolute -left-[33px] top-1 w-5 h-5 bg-teal-500 rounded-full border-4 border-white shadow-sm"></div>
@@ -168,7 +196,7 @@
                     <button id="decodeMenuBtn" class="bg-rose-600 text-white px-5 py-3 rounded-xl font-bold text-sm hover:bg-rose-700 transition-colors shadow-md shadow-rose-200">Consultar</button>
                 </div>
                 <div id="menuResult" class="mt-4 hidden text-sm bg-slate-50 p-4 rounded-xl text-slate-700 border border-slate-100 shadow-inner leading-relaxed"></div>
-                <button id="clearMenuBtn" class="mt-2 text-xs text-rose-500 font-bold underline hidden relative z-10 cursor-pointer">Nova Pesquisa</button>
+                <button id="clearMenuBtn" class="mt-2 text-xs text-rose-500 font-bold underline hidden relative z-10">Nova Pesquisa</button>
             </div>
             <div id="gastronomy-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
         </section>
@@ -190,7 +218,7 @@
             <div id="hotels-container" class="space-y-12"></div>
         </section>
 
-        <!-- 5. LOGÍSTICA -->
+        <!-- 5. LOGÍSTICA (COM MAPA DE ROTA) -->
         <section id="logistics" class="tab-content">
             <div class="bg-slate-800 rounded-2xl p-6 mb-8 text-white shadow-xl relative overflow-hidden">
                 <h3 class="text-base font-bold mb-2 flex items-center gap-2 relative z-10">
@@ -207,12 +235,20 @@
                 <button id="clearPackingBtn" class="mt-3 text-xs text-blue-300 font-bold underline hidden relative z-10 cursor-pointer">Nova Lista</button>
             </div>
             
-            <!-- MAPA DA ROTA ATUALIZADO -->
+            <!-- MAPA DA ROTA -->
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
                 <h3 class="font-bold text-slate-700 text-sm mb-4 ml-1"><i class="fa-solid fa-map-location-dot text-rose-500 mr-2"></i>Rota: Paris → Nice</h3>
                 <div class="w-full h-96 bg-slate-100 rounded-xl overflow-hidden relative shadow-inner">
-                    <!-- Rota Paris -> Avignon -> Aix -> Marseille -> Nice -->
-                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m46!1m12!1m3!1d2888060.852754596!2d2.3522219!3d46.227638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m31!3e0!4m5!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis%2C%20France!3m2!1d48.856614!2d2.3522219!4m5!1s0x12b5eb8739bc9d99%3A0x40819a5fd970fb0!2sAvignon%2C%20France!3m2!1d43.949317!2d4.805528!4m5!1s0x12c98da304b91261%3A0x40819a5fd970340!2sAix-en-Provence%2C%20France!3m2!1d43.529742!2d5.447427!4m5!1s0x12c9c0f019501b49%3A0x40819a5fd9797d0!2sMarseille%2C%20France!3m2!1d43.296482!2d5.36978!4m5!1s0x12cdd0106a852d31%3A0x40819a5fd979a70!2sNice%2C%20France!3m2!1d43.7101728!2d7.2619532!5e0!3m2!1sen!2sbr!4v1620000000000!5m2!1sen!2sbr"></iframe>
+                    <!-- Rota Paris -> Avignon -> Aix -> Marseille -> Nice (Embed) -->
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        style="border:0" 
+                        src="https://www.google.com/maps/embed?pb=!1m46!1m12!1m3!1d2888060.852754596!2d2.3522219!3d46.227638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m31!3e0!4m5!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis%2C%20France!3m2!1d48.856614!2d2.3522219!4m5!1s0x12b5eb8739bc9d99%3A0x40819a5fd970fb0!2sAvignon%2C%20France!3m2!1d43.949317!2d4.805528!4m5!1s0x12c98da304b91261%3A0x40819a5fd970340!2sAix-en-Provence%2C%20France!3m2!1d43.529742!2d5.447427!4m5!1s0x12c9c0f019501b49%3A0x40819a5fd9797d0!2sMarseille%2C%20France!3m2!1d43.296482!2d5.36978!4m5!1s0x12cdd0106a852d31%3A0x40819a5fd979a70!2sNice%2C%20France!3m2!1d43.7101728!2d7.2619532!5e0!3m2!1sen!2sbr!4v1620000000000!5m2!1sen!2sbr" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
                 </div>
             </div>
         </section>
@@ -242,14 +278,28 @@
     </div>
     <div class="chat-btn" id="toggleChat"><i class="fa-regular fa-comment-dots"></i></div>
 
+    <!-- Install App Modal -->
+    <div id="installModal" class="install-modal">
+        <div class="bg-white p-6 rounded-2xl max-w-xs mx-4 shadow-2xl text-center relative">
+            <button class="absolute top-3 right-3 text-slate-400 hover:text-slate-600" onclick="document.getElementById('installModal').classList.remove('open')"><i class="fa-solid fa-xmark"></i></button>
+            <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Instalar Aplicativo</h3>
+            <p class="text-sm text-slate-600 mb-4 leading-relaxed">Para ter acesso rápido e em tela cheia:</p>
+            <div class="text-left bg-slate-50 p-3 rounded-lg text-xs text-slate-600 space-y-2">
+                <p><strong>iPhone (iOS):</strong><br>Toque em <i class="fa-solid fa-arrow-up-from-bracket"></i> (Compartilhar) e depois em "Adicionar à Tela de Início".</p>
+                <p class="border-t border-slate-200 pt-2"><strong>Android:</strong><br>Toque em <i class="fa-solid fa-ellipsis-vertical"></i> (Menu) e depois em "Instalar App" ou "Adicionar à Tela Inicial".</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         // 1. CONFIGURAÇÃO
-        const API_KEY = "AIzaSyC-SGcf7nu_tb54AbJ8eo6_qfKRvI8o6sQ"; 
+        const API_KEY = "AIzaSyC-SGcf7nu_tb54AbJ8eo6_qfKRvI8o6sQ"; // CHAVE NOVA
         const POLL_DEADLINE = new Date('2025-12-01T23:59:59');
         const VOTE_EMAIL = "tlrp51@gmail.com";
         const TOTAL_TRAVELERS = 8;
 
-        // 2. DADOS (Completos do Word e Planilha)
+        // 2. DADOS COMPLETOS
         const itinerary = [
             { 
                 day: 1, date: "29/05", title: "Paris: Chegada, Montmartre & Torre Eiffel", 
@@ -487,13 +537,14 @@
                     <div class="grid grid-cols-1 md:grid-cols-${list.length > 1 ? '2 lg:grid-cols-3' : '1'} gap-5">
             `;
             
-            list.forEach((h, index) => {
-                const savedVote = localStorage.getItem(`vote_v3_${city}`); // New key for reset
+            list.forEach((h) => {
+                // Use NEW key 'vote_final_v1' to ensure fresh start (0 votes)
+                const savedVote = localStorage.getItem(`vote_final_v1_${city}`); 
                 const isSelected = savedVote === h.name;
                 const imgUrl = `https://image.pollinations.ai/prompt/luxury hotel ${h.img} interior professional photo?width=500&height=350&nologo=true`;
                 
-                // Simulador de Votos para 8 Pessoas
-                const fakeVotes = (h.name.length * 3) % 3 + (isSelected ? 1 : 0); 
+                // Base value 0. Only add 1 if current user voted.
+                const fakeVotes = isSelected ? 1 : 0; 
                 const percentage = Math.min(100, (fakeVotes / TOTAL_TRAVELERS) * 100);
 
                 html += `
@@ -514,7 +565,7 @@
                             ${isPoll ? `
                                 <div class="mb-3">
                                     <div class="flex justify-between text-[10px] text-slate-500 mb-1">
-                                        <span>Votos</span>
+                                        <span>Votos do Grupo</span>
                                         <span>${fakeVotes}/${TOTAL_TRAVELERS}</span>
                                     </div>
                                     <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
@@ -539,10 +590,11 @@
 
         window.vote = (city, hotel) => {
             if(!isPollOpen) return;
-            localStorage.setItem(`vote_v3_${city}`, hotel);
+            localStorage.setItem(`vote_final_v1_${city}`, hotel);
             
+            // EMAIL NOTIFICATION LOGIC
             const subject = `Voto Confirmado: Hotel em ${city}`;
-            const body = `Olá,\n\nConfirmo meu voto para o grupo da Riviera Francesa:\n\nCidade: ${city}\nHotel Escolhido: ${hotel}\n\nData: ${new Date().toLocaleDateString()}\n\nAtenciosamente.`;
+            const body = `Olá,\n\nConfirmo meu voto para a viagem Riviera Francesa 2026:\n\nCidade: ${city}\nHotel Escolhido: ${hotel}\n\nData: ${new Date().toLocaleDateString()}\n\nAtenciosamente.`;
             window.open(`mailto:${VOTE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
             
             location.reload();
@@ -710,6 +762,26 @@
             document.getElementById('clearPackingBtn').classList.add('hidden');
             document.getElementById('packingProfile').value = '';
         };
+
+        // INSTALL APP LOGIC
+        document.getElementById('installAppBtn').onclick = () => {
+             document.getElementById('installModal').classList.add('open');
+        };
     </script>
+    
+    <!-- Install App Modal (Hidden by Default) -->
+    <div id="installModal" class="install-modal">
+        <div class="bg-white p-6 rounded-2xl max-w-xs mx-4 shadow-2xl text-center relative">
+            <button class="absolute top-3 right-3 text-slate-400 hover:text-slate-600" onclick="document.getElementById('installModal').classList.remove('open')"><i class="fa-solid fa-xmark"></i></button>
+            <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <h3 class="text-lg font-bold text-slate-800 mb-2">Instalar Aplicativo</h3>
+            <p class="text-sm text-slate-600 mb-4 leading-relaxed">Para ter acesso rápido e em tela cheia:</p>
+            <div class="text-left bg-slate-50 p-3 rounded-lg text-xs text-slate-600 space-y-2">
+                <p><strong>iPhone (iOS):</strong><br>Toque em <i class="fa-solid fa-arrow-up-from-bracket"></i> (Compartilhar) e depois em "Adicionar à Tela de Início".</p>
+                <p class="border-t border-slate-200 pt-2"><strong>Android:</strong><br>Toque em <i class="fa-solid fa-ellipsis-vertical"></i> (Menu) e depois em "Instalar App" ou "Adicionar à Tela Inicial".</p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
